@@ -11,17 +11,9 @@ import {UserContext} from "@/hooks/useUser";
 import {useSupabaseClient} from "@supabase/auth-helpers-react";
 import {useRouter} from "next/navigation";
 
-const UploadModal: FC  = ({}) => {
+const UploadModal: FC = ({}) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const uploadModal = useUploadModal();
-    const context = useContext(UserContext);
-    if (!context) {
-        return null;
-    }
-    const {user} = context;
-    const supabaseClient = useSupabaseClient();
-    const router = useRouter();
-
     const {register, handleSubmit, reset} = useForm<FieldValues>({
         defaultValues: {
             author: '',
@@ -30,6 +22,14 @@ const UploadModal: FC  = ({}) => {
             image: null,
         }
     });
+    const supabaseClient = useSupabaseClient();
+    const router = useRouter();
+
+    const context = useContext(UserContext);
+    if (!context) {
+        return null;
+    }
+    const {user} = context;
 
     const onChange = (open: boolean) => {
         if (!open) {
@@ -52,7 +52,7 @@ const UploadModal: FC  = ({}) => {
 
             const uniqueID = uniqid();
 
-            const {data: songData,error: songError} = await supabaseClient
+            const {data: songData, error: songError} = await supabaseClient
                 .storage
                 .from('songs')
                 .upload(`song-${values.title}-${uniqueID}`, songFile, {
@@ -65,7 +65,7 @@ const UploadModal: FC  = ({}) => {
                 return toast.error('Failed song upload')
             }
 
-            const {data: imageData,error: imageError} = await supabaseClient
+            const {data: imageData, error: imageError} = await supabaseClient
                 .storage
                 .from('images')
                 .upload(`image-${values.title}-${uniqueID}`, imageFile, {
@@ -98,14 +98,14 @@ const UploadModal: FC  = ({}) => {
             toast.success('Song created!');
             reset();
             uploadModal.onClose();
-        } catch (error){
+        } catch (error) {
             toast.error("Something went wrong")
         } finally {
             setIsLoading(false);
         }
     }
 
-     return (
+    return (
         <Modal
             title="Add a song"
             description="Upload an mp3 file"
@@ -113,7 +113,7 @@ const UploadModal: FC  = ({}) => {
             onChange={onChange}
         >
             <form onSubmit={handleSubmit(onSubmit)}
-                className="flex flex-col gap-y-4"
+                  className="flex flex-col gap-y-4"
             >
                 <Input
                     id="title"
