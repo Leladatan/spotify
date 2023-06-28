@@ -1,7 +1,7 @@
-import React, {FC, forwardRef} from 'react';
+import React, {forwardRef} from 'react';
 import {twMerge} from "tailwind-merge";
 interface ButtonProps
-    extends React.ButtonHTMLAttributes<HTMLAllCollection>
+    extends React.ButtonHTMLAttributes<HTMLButtonElement>
 {
     children: React.ReactNode;
     className?: string;
