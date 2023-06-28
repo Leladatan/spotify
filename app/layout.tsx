@@ -6,7 +6,7 @@ import UserProvider from "@/providers/UserProvider";
 import {ReactNode} from "react";
 import ModalProvider from "@/providers/ModalProvider";
 import ToasterProvider from "@/providers/ToasterProvider";
-import getSongsByUserId from "@/actions/getSongs.ByUserId";
+import getSongsByUserId from "@/actions/getSongsByUserId";
 
 const figtree = Figtree({subsets: ['latin']});
 
