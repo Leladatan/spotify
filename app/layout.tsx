@@ -7,6 +7,7 @@ import {ReactNode} from "react";
 import ModalProvider from "@/providers/ModalProvider";
 import ToasterProvider from "@/providers/ToasterProvider";
 import getSongsByUserId from "@/actions/getSongsByUserId";
+import Player from "@/components/Player";
 
 const figtree = Figtree({subsets: ['latin']});
 
@@ -33,6 +34,7 @@ const Layout = async ({children,}: { children: ReactNode }) => {
                 <Sidebar songs={userSongs}>
                     {children}
                 </Sidebar>
+                <Player/>
             </UserProvider>
         </SupabaseProvider>
         </body>

@@ -10,6 +10,8 @@ interface SearchPage {
     }
 }
 
+export const revalidate = 0;
+
 const SearchPage = async ({searchParams}: SearchPage) => {
     const songs = await getSongsByTitle(searchParams.title);
 
@@ -37,7 +39,7 @@ const SearchPage = async ({searchParams}: SearchPage) => {
                     <SearchInput/>
                 </div>
             </Header>
-            <SearchContent songs={songs} />
+            <SearchContent songs={songs}/>
         </div>
     );
 };
