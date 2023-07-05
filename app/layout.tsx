@@ -15,7 +15,7 @@ export const metadata = {
     title: 'Spotify',
     description: 'Spotify listen to music',
     icons: {
-        icon: './favicon.ico',
+        icon: '/favicon.ico',
     },
 };
 
