@@ -94,8 +94,8 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         <div className="
             flex xsm:flex-col h-full
         ">
-            <div className="flex w-full justify-start">
-                <div className="flex items-center xsm:justify-center gap-x-4">
+            <div className="flex w-full justify-start xsm:justify-center">
+                <div className="flex items-center gap-x-4">
                     <MediaItem data={song}/>
                     <LikeButton songId={song.id}/>
                 </div>
