@@ -21,7 +21,7 @@ const Player: FC = () => {
             bg-black
             w-full
             py-2
-            h-[80px]
+            h-[100px]
             px-4
         ">
             <PlayerContent key={songUrl} song={song} songUrl={songUrl} />
