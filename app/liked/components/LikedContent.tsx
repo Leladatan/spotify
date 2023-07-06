@@ -6,6 +6,8 @@ import {useUser} from "@/hooks/useUser";
 import MediaItem from "@/components/MediaItem";
 import LikeButton from "@/components/LikeButton";
 import useOnPlay from "@/hooks/useOnPlay";
+import {twMerge} from "tailwind-merge";
+import usePlayer from "@/hooks/usePlayer";
 
 interface LikedContentProps {
     songs: Song[];
@@ -14,6 +16,7 @@ interface LikedContentProps {
 const LikedContent: FC<LikedContentProps> = ({songs}) => {
     const router = useRouter();
     const {isLoading, user} = useUser();
+    const player = usePlayer();
 
     const onPlay = useOnPlay(songs);
 
@@ -28,7 +31,7 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
     }
 
     return (
-        <div className="flex flex-col gap-y-2 w-full px-6">
+        <div className={twMerge(`flex flex-col gap-y-2 w-full px-6 h-full`, player.activeId && "h-[calc(100%-130px)]")}>
             {songs.map((song) => (
                 <div
                     key={song.id}

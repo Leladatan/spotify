@@ -3,6 +3,8 @@ import React, {FC} from 'react';
 import {Song} from "@/types";
 import SongItem from "@/components/SongItem";
 import useOnPlay from "@/hooks/useOnPlay";
+import usePlayer from "@/hooks/usePlayer";
+import {twMerge} from "tailwind-merge";
 
 interface SongsContentProps {
     songs: Song[];
@@ -10,6 +12,7 @@ interface SongsContentProps {
 
 const SongsContent: FC<SongsContentProps> = ({songs}) => {
     const onPlay = useOnPlay(songs);
+    const player = usePlayer();
 
     if (songs.length === 0) {
         return (
@@ -20,8 +23,7 @@ const SongsContent: FC<SongsContentProps> = ({songs}) => {
     }
     return (
         <div
-            className="
-            grid
+            className={twMerge(`grid
             grid-cols-2
             sm:grid-cols-3
             md:grid-cols-3
@@ -29,8 +31,7 @@ const SongsContent: FC<SongsContentProps> = ({songs}) => {
             xl:grid-cols-5
             2xl:grid-cols-6
             gap-4
-            mt-4
-        ">
+            mt-4 h-full`, player.activeId && "h-[calc(100%-130px)]")}>
             {songs.map(song => (
                 <SongItem
                     key={song.id}
