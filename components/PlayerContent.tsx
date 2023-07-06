@@ -92,7 +92,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
 
     return (
         <div className="
-            flex h-full
+            flex flex-col xs:flex-row  h-full
         ">
             <div className="flex w-full justify-start">
                 <div className="flex items-center gap-x-4">
