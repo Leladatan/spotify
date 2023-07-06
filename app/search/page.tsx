@@ -3,11 +3,17 @@ import Header from "@/components/Header";
 import SearchInput from "@/components/SearchInput";
 import SearchContent from "@/app/search/components/SearchContent";
 import getSongsByTitle from "@/actions/getSongsByTitle";
+import type { Metadata } from 'next';
 
 interface SearchPage {
     searchParams: {
         title: string;
     }
+}
+
+export const metadata: Metadata = {
+  title: 'Search songs',
+  description: 'Search all songs',
 }
 
 export const revalidate = 0;
