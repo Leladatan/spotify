@@ -8,10 +8,11 @@ import ModalProvider from "@/providers/ModalProvider";
 import ToasterProvider from "@/providers/ToasterProvider";
 import getSongsByUserId from "@/actions/getSongsByUserId";
 import Player from "@/components/Player";
+import {Metadata} from "next";
 
 const figtree = Figtree({subsets: ['latin']});
 
-export const metadata = {
+export const metadata: Metadata = {
     title: 'Spotify',
     description: 'Spotify listen to music',
     icons: {
