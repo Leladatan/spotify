@@ -9,12 +9,10 @@ body,
     background-color: black;
     color: white;
     color-scheme: black;
-}
 
-body {
-  overflow: hidden;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+    overflow: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 body::-webkit-scrollbar {
