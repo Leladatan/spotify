@@ -45,7 +45,7 @@ const MediaItem: FC<MediaItemProsp> = ({data, onClick}) => {
                 gap-y-1
                 overflow-hidden
             ">
-                <p className="text-white truncate">
+                <p className="w-[150px] text-white truncate">
                     {data.title}
                 </p>
                 <p className="text-neutral-400 text-sm truncate">
