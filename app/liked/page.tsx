@@ -6,6 +6,12 @@ import Image from "next/image";
 import LikedContent from "@/app/liked/components/LikedContent";
 
 export const revalidate = 0;
+
+export const metadata: Metadata = {
+  title: 'Liked songs',
+  description: 'Your liked songs',
+}
+
 const LikedPage: NextPage = async () => {
     const songs = await getLikedSongs();
 
