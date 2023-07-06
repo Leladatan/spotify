@@ -4,6 +4,7 @@ import getLikedSongs from "@/actions/getLikedSongs";
 import Header from "@/components/Header";
 import Image from "next/image";
 import LikedContent from "@/app/liked/components/LikedContent";
+import type { Metadata } from 'next'
 
 export const revalidate = 0;
 
