@@ -101,7 +101,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
                 </div>
             </div>
             
-            <div className="h-full flex justify-center items-center w-full max-w-[722px] gap-x-6">
+            <div className="h-full flex justify-end md:justify-center items-center w-full max-w-[722px] gap-x-6">
                 <AiFillStepBackward
                     onClick={onPlayPrev}
                     size={30}
@@ -119,7 +119,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
                 />
             </div>
 
-            <div className="flex w-full justify-end pr-2">
+            <div className="hidden md:flex w-full justify-end pr-2">
                 <div className="flex items-center gap-x-2 w-[120px]">
                     <VolumeIcon onClick={toggleMute} className="cursor-pointer" size={34}/>
                     <Slider value={volume} onChange={(value) => setVolume(value)} />
