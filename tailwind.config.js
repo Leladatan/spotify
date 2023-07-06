@@ -10,6 +10,7 @@ module.exports = {
 
     },
     screens: {
+      'xsm': {'max': '420px'},
       'xs': '420px',
       ...defaultTheme.screens,
     },
