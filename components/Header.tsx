@@ -22,7 +22,6 @@ const Header: FC<HeaderProps> = ({children, className}) => {
     const router = useRouter();
     const supabaseClient = useSupabaseClient();
 
-    // Проверка на null и зашел ли пользователь обход ошибки как в видео
     const context = useContext(UserContext);
     if (!context) {
         return null;
