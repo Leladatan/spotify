@@ -92,16 +92,16 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
 
     return (
         <div className="
-            flex flex-col xs:flex-row  h-full
+            flex xsm:flex-col h-full
         ">
             <div className="flex w-full justify-start">
-                <div className="flex items-center gap-x-4">
+                <div className="flex items-center xsm:justify-center gap-x-4">
                     <MediaItem data={song}/>
                     <LikeButton songId={song.id}/>
                 </div>
             </div>
             
-            <div className="h-full flex justify-end md:justify-center items-center w-full max-w-[722px] gap-x-6">
+            <div className="h-full flex justify-end xsm:justify-center md:justify-center items-center w-full max-w-[722px] gap-x-6">
                 <AiFillStepBackward
                     onClick={onPlayPrev}
                     size={30}
