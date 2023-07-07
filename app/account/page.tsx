@@ -25,7 +25,6 @@ const AccountPage: NextPage = () => {
               </h1>
             </div>
           </Header>
-          <AccountContent />
         </div>
     );
 };
