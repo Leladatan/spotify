@@ -3,9 +3,6 @@ import React, {FC} from 'react';
 import {Song} from "@/types";
 import MediaItem from "@/components/MediaItem";
 import LikeButton from "@/components/LikeButton";
-import useGetSongById from "@/hooks/useGetSongById";
-import useLoadSongUrl from "@/hooks/useLoadSongUrl";
-import {useUser} from "@/hooks/useUser";
 import useOnPlay from "@/hooks/useOnPlay";
 import {twMerge} from "tailwind-merge";
 import usePlayer from "@/hooks/usePlayer";
@@ -16,9 +13,6 @@ interface SearchContent {
 
 const SearchContent: FC<SearchContent> = ({songs}) => {
     const player = usePlayer();
-    const {song} = useGetSongById(String(player.activeId));
-    const {isLoading, user} = useUser();
-    const songUrl = useLoadSongUrl(song!);
     const onPlay = useOnPlay(songs);
 
     if (songs.length === 0) {
@@ -30,7 +24,7 @@ const SearchContent: FC<SearchContent> = ({songs}) => {
     }
 
     return (
-        <div className={twMerge(`flex flex-col gap-y-2 w-full px-6 h-full`, (song || songUrl || player.activeId || (isLoading && user)) && "h-[calc(100%-130px)]")}>
+        <div className={twMerge(`flex flex-col gap-y-2 w-full px-6 h-full`,  player.activeId && "h-[calc(100%-130px)]")}>
             {songs.map(song => (
                 <div
                     key={song.id}
