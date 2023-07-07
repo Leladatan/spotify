@@ -9,7 +9,6 @@ import {HiSpeakerWave, HiSpeakerXMark} from "react-icons/hi2";
 import Slider from "@/components/Slider";
 import usePlayer from "@/hooks/usePlayer";
 import useSound from "use-sound";
-import store from "@/store/store";
 
 interface PlayerContentProps {
     song: Song;
@@ -17,9 +16,8 @@ interface PlayerContentProps {
 }
 
 const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
-    const volumeStorage = store.useState(s => s.volume);
     const player = usePlayer();
-    const [volume, setVolume] = useState<number>(Number(volumeStorage));
+    const [volume, setVolume] = useState<number>(Number(localStorage.getItem("volume")));
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const Icon = isPlaying ? BsPauseFill : BsPlayFill;
     const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
@@ -72,25 +70,28 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
             onpause: () => setIsPlaying(false),
             format: ['mp3']
         }
-        );
+    );
 
     useEffect(() => {
+        if (localStorage.getItem("volume") === null) {
+            localStorage.setItem("volume", "1");
+        }
         sound?.play();
 
         return () => sound?.unload();
     }, [sound]);
 
     const handlePlay = () => {
-      if (!isPlaying) {
-          play();
-      } else {
-          pause();
-      }
+        if (!isPlaying) {
+            play();
+        } else {
+            pause();
+        }
     };
 
     const toggleMute = () => {
         if (volume === 0) {
-            setVolume(Number(volumeStorage));
+            setVolume(Number(localStorage.getItem("volume")));
         } else {
             setVolume(0);
         }
@@ -106,8 +107,9 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
                     <LikeButton songId={song.id}/>
                 </div>
             </div>
-            
-            <div className="h-full flex justify-end xsm:justify-center md:justify-center items-center w-full max-w-[722px] gap-x-6">
+
+            <div
+                className="h-full flex justify-end xsm:justify-center md:justify-center items-center w-full max-w-[722px] gap-x-6">
                 <AiFillStepBackward
                     onClick={onPlayPrev}
                     size={30}
@@ -128,7 +130,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
             <div className="hidden md:flex w-full justify-end pr-2">
                 <div className="flex items-center gap-x-2 w-[120px]">
                     <VolumeIcon onClick={toggleMute} className="cursor-pointer" size={34}/>
-                    <Slider value={volume} onChange={handleLocalStorage} />
+                    <Slider value={volume} onChange={handleLocalStorage}/>
                 </div>
             </div>
 
