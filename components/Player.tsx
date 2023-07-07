@@ -1,16 +1,18 @@
 "use client";
 import React, {FC} from 'react';
 import usePlayer from "@/hooks/usePlayer";
+import {useUser} from "@/hooks/useUser";
 import useGetSongById from "@/hooks/useGetSongById";
 import useLoadSongUrl from "@/hooks/useLoadSongUrl";
 import PlayerContent from "@/components/PlayerContent";
 
 const Player: FC = () => {
     const player = usePlayer();
+    const user = useUser().user;
     const {song} = useGetSongById(String(player.activeId));
     const songUrl = useLoadSongUrl(song!);
 
-    if (!song || !songUrl || !player.activeId) {
+    if (!song || !songUrl || !player.activeId || !user) {
         return null;
     }
 
