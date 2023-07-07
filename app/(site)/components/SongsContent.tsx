@@ -27,6 +27,8 @@ const SongsContent: FC<SongsContentProps> = ({songs}) => {
             </div>
         )
     }
+
+    console.log(song || songUrl || player.activeId || (isLoading && user): "content");
     return (
         <div
             className={twMerge(`grid
