@@ -18,6 +18,7 @@ const AccountPage: NextPage = () => {
             w-full
             overflow-hidden
             overflow-y-auto
+            scrollbar-thin
         ">
             <Header>
                 <div className="mt-20">
