@@ -11,9 +11,15 @@ const Player: FC = () => {
     const {isLoading, user} = useUser();
     const songUrl = useLoadSongUrl(song!);
 
-    if (!song || !songUrl || !player.activeId || (!isLoading && !user)) {
+    if (!song || !songUrl || !player.activeId) {
         return null;
     }
+
+    useEffect(() => {
+        if (!isLoading && !user) {
+            return null;
+        }
+    }, [isLoading, user]);
 
     return (
         <div className="
