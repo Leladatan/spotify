@@ -5,8 +5,8 @@ import Image from "next/image";
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Search songs',
-  description: 'Search all songs',
+  title: 'Spotify: profile',
+  description: 'Spotify profile',
 }
 
 const AccountPage: NextPage = () => {
