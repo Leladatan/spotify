@@ -8,10 +8,10 @@ import PlayerContent from "@/components/PlayerContent";
 const Player: FC = () => {
     const player = usePlayer();
     const {song} = useGetSongById(String(player.activeId));
-
+    const user = useUser().user;
     const songUrl = useLoadSongUrl(song!);
 
-    if (!song || !songUrl || !player.activeId) {
+    if (!song || !songUrl || !player.activeId || !user) {
         return null;
     }
 
