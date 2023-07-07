@@ -17,10 +17,10 @@ interface LikedContentProps {
 
 const LikedContent: FC<LikedContentProps> = ({songs}) => {
     const router = useRouter();
-    const {song} = useGetSongById(String(player.activeId));
     const {isLoading, user} = useUser();
-    const songUrl = useLoadSongUrl(song!);
     const player = usePlayer();
+    const {song} = useGetSongById(String(player.activeId));
+    const songUrl = useLoadSongUrl(song!);
 
     const onPlay = useOnPlay(songs);
 
@@ -52,3 +52,4 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
 };
 
 export default LikedContent;
+
