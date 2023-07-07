@@ -3,6 +3,12 @@ import {NextPage} from "next";
 import Header from "@/components/Header";
 import Image from "next/image";
 
+
+export const metadata: Metadata = {
+  title: 'Search songs',
+  description: 'Search all songs',
+}
+
 const AccountPage: NextPage = () => {
     return (
         <div className="
