@@ -3,6 +3,8 @@ import React, {FC} from 'react';
 import {Song} from "@/types";
 import SongItem from "@/components/SongItem";
 import {useUser} from "@/hooks/useUser";
+import useGetSongById from "@/hooks/useGetSongById";
+import useLoadSongUrl from "@/hooks/useLoadSongUrl";
 import useOnPlay from "@/hooks/useOnPlay";
 import usePlayer from "@/hooks/usePlayer";
 import {twMerge} from "tailwind-merge";
@@ -13,7 +15,9 @@ interface SongsContentProps {
 
 const SongsContent: FC<SongsContentProps> = ({songs}) => {
     const onPlay = useOnPlay(songs);
+    const {song} = useGetSongById(String(player.activeId));
     const {isLoading, user} = useUser();
+    const songUrl = useLoadSongUrl(song!);
     const player = usePlayer();
 
     if (songs.length === 0) {
@@ -33,7 +37,7 @@ const SongsContent: FC<SongsContentProps> = ({songs}) => {
             xl:grid-cols-5
             2xl:grid-cols-6
             gap-4
-            mt-4 h-full`, (player.activeId || isLoading && user) && "h-[calc(100%-130px)]")}>
+            mt-4 h-full`, (song || songUrl || player.activeId || (isLoading && user)) && "h-[calc(100%-130px)]")}>
             {songs.map(song => (
                 <SongItem
                     key={song.id}
