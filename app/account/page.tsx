@@ -16,6 +16,7 @@ const AccountPage: NextPage = () => {
             w-full 
             overflow-hidden 
             overflow-y-auto
+            scrollbar-thin
         ">
           <Header className="from-bg-neutral-900">
             <div className="mb-2 flex flex-col gap-y-6">
