@@ -3,6 +3,8 @@ import React, {FC, useEffect} from 'react';
 import {Song} from "@/types";
 import {useRouter} from "next/navigation";
 import {useUser} from "@/hooks/useUser";
+import useGetSongById from "@/hooks/useGetSongById";
+import useLoadSongUrl from "@/hooks/useLoadSongUrl";
 import MediaItem from "@/components/MediaItem";
 import LikeButton from "@/components/LikeButton";
 import useOnPlay from "@/hooks/useOnPlay";
@@ -15,7 +17,9 @@ interface LikedContentProps {
 
 const LikedContent: FC<LikedContentProps> = ({songs}) => {
     const router = useRouter();
+    const {song} = useGetSongById(String(player.activeId));
     const {isLoading, user} = useUser();
+    const songUrl = useLoadSongUrl(song!);
     const player = usePlayer();
 
     const onPlay = useOnPlay(songs);
@@ -31,7 +35,7 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
     }
 
     return (
-        <div className={twMerge(`flex flex-col gap-y-2 w-full px-6 h-full`, (player.activeId || isLoading && user) && "h-[calc(100%-130px)]")}>
+        <div className={twMerge(`flex flex-col gap-y-2 w-full px-6 h-full`, (song || songUrl || player.activeId || (isLoading && user)) && "h-[calc(100%-130px)]")}>
             {songs.map((song) => (
                 <div
                     key={song.id}
