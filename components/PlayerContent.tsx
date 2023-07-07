@@ -9,6 +9,7 @@ import {HiSpeakerWave, HiSpeakerXMark} from "react-icons/hi2";
 import Slider from "@/components/Slider";
 import usePlayer from "@/hooks/usePlayer";
 import useSound from "use-sound";
+import store from "@/store/store";
 
 interface PlayerContentProps {
     song: Song;
@@ -16,11 +17,16 @@ interface PlayerContentProps {
 }
 
 const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
+    const volumeStorage = store.useState(s => s.volume);
     const player = usePlayer();
-    const [volume, setVolume] = useState<number>(1);
+    const [volume, setVolume] = useState<number>(Number(volumeStorage));
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const Icon = isPlaying ? BsPauseFill : BsPlayFill;
     const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
+
+    const handleLocalStorage = (value: number): void => {
+        setVolume(value)
+    }
 
     const onPlayNext = () => {
         if (player.ids.length === 0) {
@@ -84,7 +90,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
 
     const toggleMute = () => {
         if (volume === 0) {
-            setVolume(1);
+            setVolume(Number(volumeStorage));
         } else {
             setVolume(0);
         }
@@ -122,7 +128,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
             <div className="hidden md:flex w-full justify-end pr-2">
                 <div className="flex items-center gap-x-2 w-[120px]">
                     <VolumeIcon onClick={toggleMute} className="cursor-pointer" size={34}/>
-                    <Slider value={volume} onChange={(value) => setVolume(value)} />
+                    <Slider value={volume} onChange={handleLocalStorage} />
                 </div>
             </div>
 

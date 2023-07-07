@@ -9,8 +9,10 @@ interface SliderProps {
 
 const Slider: FC<SliderProps> = ({value = 1, onChange}) => {
     const handleChange = (newValue: number[]) => {
+        localStorage.setItem("volume", String(newValue[0]));
         onChange?.(newValue[0]);
     }
+
     return (
         <RadixSlider.Root
             className="relative flex items-center select-none touch-none w-full h-10"
