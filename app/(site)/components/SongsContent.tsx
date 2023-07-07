@@ -16,8 +16,6 @@ const SongsContent: FC<SongsContentProps> = ({songs}) => {
     const {isLoading, user} = useUser();
     const player = usePlayer();
 
-    console.log(player.activeId || (isLoading && user): "content");
-
     if (songs.length === 0) {
         return (
             <div className="mt-4 text-neutral-400">
