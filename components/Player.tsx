@@ -3,18 +3,14 @@ import React, {FC} from 'react';
 import usePlayer from "@/hooks/usePlayer";
 import useGetSongById from "@/hooks/useGetSongById";
 import useLoadSongUrl from "@/hooks/useLoadSongUrl";
-import {useUser} from "@/hooks/useUser";
 import PlayerContent from "@/components/PlayerContent";
 
 const Player: FC = () => {
     const player = usePlayer();
     const {song} = useGetSongById(String(player.activeId));
-    const {isLoading, user} = useUser();
     const songUrl = useLoadSongUrl(song!);
 
-    console.log(!song || !songUrl || !player.activeId || (!isLoading && !user));
-
-    if (!song || !songUrl || !player.activeId || (!isLoading && !user)) {
+    if (!song || !songUrl || !player.activeId) {
         return null;
     }
 
