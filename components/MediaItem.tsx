@@ -38,7 +38,7 @@ const MediaItem: FC<MediaItemProsp> = ({data, onClick}) => {
                 min-w-[48px]
                 overflow-hidden
             ">
-                <Image fill src={imageUrl || '/images/liked.png'} alt="Media item" className="object-cover"/>
+                <Image fill src={imageUrl || '/images/liked.png'} alt="Media item" className="object-cover" loading="lazy" />
             </div>
             <div className="
                 flex flex-col
