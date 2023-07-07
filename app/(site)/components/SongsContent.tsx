@@ -15,10 +15,10 @@ interface SongsContentProps {
 
 const SongsContent: FC<SongsContentProps> = ({songs}) => {
     const onPlay = useOnPlay(songs);
-    const {song} = useGetSongById(String(player.activeId));
     const {isLoading, user} = useUser();
-    const songUrl = useLoadSongUrl(song!);
     const player = usePlayer();
+    const {song} = useGetSongById(String(player.activeId));
+    const songUrl = useLoadSongUrl(song!);
 
     if (songs.length === 0) {
         return (
@@ -50,3 +50,4 @@ const SongsContent: FC<SongsContentProps> = ({songs}) => {
 };
 
 export default SongsContent;
+
