@@ -1,3 +1,4 @@
+import React from 'react';
 import {NextPage} from "next";
 import Header from "@/components/Header";
 import type { Metadata } from 'next';
@@ -18,13 +19,13 @@ const AccountPage: NextPage = () => {
             overflow-y-auto
             scrollbar-thin
         ">
-          <Header className="from-bg-neutral-900">
-            <div className="mb-2 flex flex-col gap-y-6">
-              <h1 className="text-white text-3xl font-semibold">
-                Account Settings
-              </h1>
-            </div>
-          </Header>
+            <Header className="from-bg-neutral-900">
+              <div className="mb-2 flex flex-col gap-y-6">
+                <h1 className="text-white text-3xl font-semibold">
+                  Account Settings
+                </h1>
+              </div>
+            </Header>
         </div>
     );
 };
