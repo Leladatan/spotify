@@ -12,7 +12,7 @@ const Player: FC = () => {
     const {isLoading, user} = useUser();
     const songUrl = useLoadSongUrl(song!);
 
-    console.log(!song || !songUrl || !player.activeId || (!isLoading && !user));
+    console.log(!song || !songUrl || !player.activeId || (!isLoading && !user): "player");
 
     if (!song || !songUrl || !player.activeId || (!isLoading && !user)) {
         return null;
