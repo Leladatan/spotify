@@ -11,6 +11,23 @@ body,
     color-scheme: black;
 }
 
-  body::-webkit-scrollbar {
-      width: 0;
+// styling the scrollbar width and height
+  .scrollbar-thin::-webkit-scrollbar {
+    @apply w-2 h-2
+  }
+ 
+   // adding background to track
+  .scrollbar-track-gray-200::-webkit-scrollbar-track {
+    @apply bg-gray-200
+  }
+ 
+   // styling scrollbar thumb
+  .scrollbar-thumb-dark-gray-400::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 rounded-full border-2 border-gray-400
+  
+  }
+ 
+  // adding hover state on thumb
+  .scrollbar-hover-black::-webkit-scrollbar-thumb:hover {
+    @apply bg-black
   }
