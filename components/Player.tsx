@@ -12,6 +12,8 @@ const Player: FC = () => {
     const {song} = useGetSongById(String(player.activeId));
     const songUrl = useLoadSongUrl(song!);
 
+    localStorage.setItem("volume", "1");
+
     if (!song || !songUrl || !player.activeId || !user) {
         return null;
     }

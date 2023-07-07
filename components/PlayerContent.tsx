@@ -22,8 +22,8 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
     const Icon = isPlaying ? BsPauseFill : BsPlayFill;
     const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
 
-    const handleLocalStorage = (value: number): void => {
-        setVolume(value)
+    const handleValue = (value: number): void => {
+        setVolume(value);
     }
 
     const onPlayNext = () => {
@@ -63,7 +63,6 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         {
             volume: volume,
             onplay: () => {
-                localStorage.getItem("volume") === null ? localStorage.setItem("volume", "1") : localStorage.getItem("volume");
                 setIsPlaying(true)
             },
             onend: () => {
@@ -130,7 +129,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
             <div className="hidden md:flex w-full justify-end pr-2">
                 <div className="flex items-center gap-x-2 w-[120px]">
                     <VolumeIcon onClick={toggleMute} className="cursor-pointer" size={34}/>
-                    <Slider value={volume} onChange={handleLocalStorage}/>
+                    <Slider value={volume} onChange={handleValue}/>
                 </div>
             </div>
 
