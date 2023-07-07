@@ -16,7 +16,6 @@ interface PlayerContentProps {
 }
 
 const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
-    localStorage.setItem("volume", "1");
     const player = usePlayer();
     const [volume, setVolume] = useState<number>(Number(localStorage.getItem("volume")));
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
@@ -63,7 +62,10 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         songUrl,
         {
             volume: volume,
-            onplay: () => setIsPlaying(true),
+            onplay: () => {
+                localStorage.getItem("volume") === null ? localStorage.setItem("volume", "1") : localStorage.getItem("volume");
+                setIsPlaying(true)
+            },
             onend: () => {
                 setIsPlaying(false);
                 onPlayNext();
