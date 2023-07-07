@@ -17,16 +17,20 @@ const Player: FC = () => {
     }
 
     return (
-        <div className="
+
+        {!song || !songUrl || !player.activeId || (!isLoading && !user) 
+            ?
+            null
+            :
+            <div className="
             fixed bottom-0
             bg-black
             w-full
             py-2
             h-[130px]
-            px-4
-        ">
+            px-4">
             <PlayerContent key={songUrl} song={song} songUrl={songUrl} />
-        </div>
+        </div>}
     );
 };
 
