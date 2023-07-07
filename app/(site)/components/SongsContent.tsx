@@ -20,6 +20,8 @@ const SongsContent: FC<SongsContentProps> = ({songs}) => {
     const {song} = useGetSongById(String(player.activeId));
     const songUrl = useLoadSongUrl(song!);
 
+    console.log(song || songUrl || player.activeId || (isLoading && user): "content");
+
     if (songs.length === 0) {
         return (
             <div className="mt-4 text-neutral-400">
@@ -27,8 +29,6 @@ const SongsContent: FC<SongsContentProps> = ({songs}) => {
             </div>
         )
     }
-
-    console.log(song || songUrl || player.activeId || (isLoading && user): "content");
     return (
         <div
             className={twMerge(`grid
