@@ -49,7 +49,7 @@ const Sidebar: FC<SidebarProps> = ({children, songs}) => {
                         ))}
                     </div>
                 </Box>
-                <Box className="overflow-y-auto h-full">
+                <Box className="overflow-y-auto h-full scrollbar-thin">
                     <Library songs={songs}/>
                 </Box>
             </div>
