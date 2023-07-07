@@ -17,32 +17,30 @@ const SongItem: FC<SongItemProps> = ({data, onClick}) => {
         <div
             onClick={() => onClick(data.id)}
             className="
-        relative
-        group
-        flex
-        flex-col
-        items-center
-        justify-center
-        rounded-md
-        overflow-hidden
-        gap-x-4
-        bg-neutral-400/5
-        cursor-pointer
-        hover:bg-neutral-400/10
-        transition
-        p-3
-      "
-        >
+                relative
+                group
+                flex
+                flex-col
+                items-center
+                justify-center
+                rounded-md
+                overflow-hidden
+                gap-x-4
+                bg-neutral-400/5
+                cursor-pointer
+                hover:bg-neutral-400/10
+                transition
+                p-3
+        ">
             <div
                 className="
-          relative
-          aspect-square
-          w-full
-          h-full
-          rounded-md
-          overflow-hidden
-        "
-            >
+                  relative
+                  aspect-square
+                  w-full
+                  h-full
+                  rounded-md
+                  overflow-hidden
+            ">
                 <Image
                     className="object-cover"
                     src={imagePath || '/images/music-placeholder.png'}
@@ -56,24 +54,22 @@ const SongItem: FC<SongItemProps> = ({data, onClick}) => {
                 </p>
                 <p
                     className="
-            text-neutral-400
-            text-sm
-            pb-4
-            w-full
-            truncate
-          "
-                >
+                        text-neutral-400
+                        text-sm
+                        pb-4
+                        w-full
+                        truncate
+                ">
                     By {data.author}
                 </p>
             </div>
             <div
                 className="
-          absolute
-          bottom-24
-          right-5
-        "
-            >
-                <PlayButton />
+                  absolute
+                  bottom-24
+                  right-5
+            ">
+                <PlayButton/>
             </div>
         </div>
     );
