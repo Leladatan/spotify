@@ -33,7 +33,7 @@ const Sidebar: FC<SidebarProps> = ({children, songs}) => {
     ], [pathname]);
 
     return (
-        <div className={twMerge(`flex`, (player.activeId || (isLoading && user)) ? "h-[calc(100%-130px)]" : "h-full")}>
+        <div className={twMerge(`flex`, (player.activeId && (isLoading && user)) ? "h-[calc(100%-130px)]" : "h-full")}>
             <div className="hidden md:flex flex-col gap-y-2 bg-black h-full w-[300px] p-2">
                 <Box>
                     <div className="
