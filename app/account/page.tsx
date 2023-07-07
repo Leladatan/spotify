@@ -2,7 +2,7 @@ import React from 'react';
 import {NextPage} from "next";
 import Header from "@/components/Header";
 import Image from "next/image";
-
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Search songs',
