@@ -1,4 +1,3 @@
-import AccountContent from "./components/AccountContent";
 import {NextPage} from "next";
 import Header from "@/components/Header";
 import type { Metadata } from 'next';
@@ -25,7 +24,6 @@ const AccountPage: NextPage = () => {
               </h1>
             </div>
           </Header>
-          <AccountContent />
         </div>
     );
 };
