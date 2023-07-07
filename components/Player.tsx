@@ -12,25 +12,21 @@ const Player: FC = () => {
     const {isLoading, user} = useUser();
     const songUrl = useLoadSongUrl(song!);
 
-    // if (!song || !songUrl || !player.activeId || (!isLoading && !user)) {
-    //     return null;
-    // }
+    if (!song || !songUrl || !player.activeId || (!isLoading && !user)) {
+        return null;
+    }
 
     return (
-
-        {!song || !songUrl || !player.activeId || (!isLoading && !user) 
-            ?
-            null
-            :
-            <div className="
+        <div className="
             fixed bottom-0
             bg-black
             w-full
             py-2
             h-[130px]
-            px-4">
+            px-4
+        ">
             <PlayerContent key={songUrl} song={song} songUrl={songUrl} />
-        </div>}
+        </div>
     );
 };
 
