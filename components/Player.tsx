@@ -1,5 +1,5 @@
 "use client";
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import usePlayer from "@/hooks/usePlayer";
 import {useUser} from "@/hooks/useUser";
 import useGetSongById from "@/hooks/useGetSongById";
@@ -12,7 +12,9 @@ const Player: FC = () => {
     const {song} = useGetSongById(String(player.activeId));
     const songUrl = useLoadSongUrl(song!);
 
-    localStorage.setItem("volume", "1");
+    useEffect(() => {
+        localStorage.getItem("volume") === null ? localStorage.setItem("volume", "1") : localStorage.getItem("volume");
+    }, []);
 
     if (!song || !songUrl || !player.activeId || !user) {
         return null;
