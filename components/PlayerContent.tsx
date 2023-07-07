@@ -16,13 +16,9 @@ interface PlayerContentProps {
 }
 
 const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
+    localStorage.setItem("volume", "1");
     const player = usePlayer();
-    const [volume, setVolume] = useState<number>(Number(
-        localStorage.getItem("volume") === null
-            ?
-            localStorage.setItem("volume", "1")
-            :
-            localStorage.getItem("volume")));
+    const [volume, setVolume] = useState<number>(Number(localStorage.getItem("volume")));
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const Icon = isPlaying ? BsPauseFill : BsPlayFill;
     const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
