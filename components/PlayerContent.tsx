@@ -19,6 +19,18 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
     const player = usePlayer();
     const [volume, setVolume] = useState<number>(Number(localStorage.getItem("volume")));
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
+
+    const [time, setTime] = useState({
+        min: "0",
+        sec: "0"
+    });
+    const [currTime, setCurrTime] = useState({
+        min: "0",
+        sec: "0"
+    });
+
+    const [seconds, setSeconds] = useState();
+
     const Icon = isPlaying ? BsPauseFill : BsPlayFill;
     const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
 
@@ -58,7 +70,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         player.setId(prevSong);
     };
 
-    const [play, {pause, sound}] = useSound(
+    const [play, {pause, duration, sound}] = useSound(
         songUrl,
         {
             volume: volume,
@@ -80,6 +92,33 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         return () => sound?.unload();
     }, [sound]);
 
+    useEffect(() => {
+        if (duration) {
+            const sec = duration / 1000;
+            const min = String(Math.floor(sec / 60));
+            const secRemain = String(Math.floor(sec % 60));
+            setTime({
+                min: min,
+                sec: secRemain
+            });
+        }
+    }, [isPlaying]);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (sound) {
+                setSeconds(sound.seek([]));
+                const min = String(Math.floor(sound.seek([]) / 60));
+                const sec = String(Math.floor(sound.seek([]) % 60));
+                setCurrTime({
+                    min,
+                    sec
+                });
+            }
+        }, 1000);
+        return () => clearInterval(interval);
+    }, [sound]);
+
     const handlePlay = () => {
         if (!isPlaying) {
             play();
@@ -97,43 +136,65 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
     }
 
     return (
-        <div className="
-            flex xsm:flex-col h-full gap-y-2
-        ">
-            <div className="flex w-full justify-start xsm:justify-center">
-                <div className="flex items-center gap-x-4">
-                    <MediaItem data={song}/>
-                    <LikeButton songId={song.id}/>
-                </div>
-            </div>
+        <>
 
-            <div
-                className="h-full flex justify-end xsm:justify-center md:justify-center items-center w-full max-w-[722px] gap-x-6">
-                <AiFillStepBackward
-                    onClick={onPlayPrev}
-                    size={30}
-                    className="text-neutral-400 cursor-pointer hover:text-white transition"
+            <div>
+                <div className="flex items-center justify-between">
+                    <p className="text-gray-300 truncate text-xs">
+                        {currTime.min}:{currTime.sec.length === 1 ? "0" + currTime.sec : currTime.sec}
+                    </p>
+                    <p className="text-gray-300 truncate text-xs">
+                        {time.min}:{time.sec.length === 1 ? "0" + time.sec : time.sec}
+                    </p>
+                </div>
+                <input
+                    type="range"
+                    min={0}
+                    max={duration! / 1000}
+                    value={seconds}
+                    onChange={(e) => {
+                        sound.seek([e.target.value]);
+                    }}
                 />
+            </div>
+            <div className="
+            flex xsm:flex-col items-center gap-y-2
+            ">
+                <div className="flex w-full justify-start xsm:justify-center">
+                    <div className="flex items-center gap-x-4">
+                        <MediaItem data={song}/>
+                        <LikeButton songId={song.id}/>
+                    </div>
+                </div>
+
                 <div
-                    onClick={handlePlay}
-                    className="flex items-center justify-center h-10 w-10 rounded-full bg-white p-1 cursor-pointer">
-                    <Icon size={30} className="text-black"/>
+                    className="h-full flex justify-end xsm:justify-center md:justify-center items-center w-full max-w-[722px] gap-x-6">
+                    <AiFillStepBackward
+                        onClick={onPlayPrev}
+                        size={30}
+                        className="text-neutral-400 cursor-pointer hover:text-white transition"
+                    />
+                    <div
+                        onClick={handlePlay}
+                        className="flex items-center justify-center h-10 w-10 rounded-full bg-white p-1 cursor-pointer">
+                        <Icon size={30} className="text-black"/>
+                    </div>
+                    <AiFillStepForward
+                        onClick={onPlayNext}
+                        size={30}
+                        className="text-neutral-400 cursor-pointer hover:text-white transition"
+                    />
                 </div>
-                <AiFillStepForward
-                    onClick={onPlayNext}
-                    size={30}
-                    className="text-neutral-400 cursor-pointer hover:text-white transition"
-                />
-            </div>
 
-            <div className="hidden md:flex w-full justify-end pr-2">
-                <div className="flex items-center gap-x-2 w-[120px]">
-                    <VolumeIcon onClick={toggleMute} className="cursor-pointer" size={34}/>
-                    <Slider value={volume} onChange={handleValue}/>
+                <div className="hidden md:flex w-full justify-end pr-2">
+                    <div className="flex items-center gap-x-2 w-[120px]">
+                        <VolumeIcon onClick={toggleMute} className="cursor-pointer" size={34}/>
+                        <Slider value={volume} onChange={handleValue}/>
+                    </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
+        </>
     );
 };
 

@@ -11,19 +11,49 @@ body,
     color-scheme: black;
 }
 
-  .scrollbar-thin::-webkit-scrollbar {
+.scrollbar-thin::-webkit-scrollbar {
     @apply w-2 h-2
-  }
- 
-  .scrollbar-track-gray-200::-webkit-scrollbar-track {
-    @apply bg-gray-200
-  }
- 
-  .scrollbar-thumb-dark-gray-400::-webkit-scrollbar-thumb {
-    @apply bg-gray-400 rounded-full border-2 border-gray-400
-  
-  }
+}
 
-  .scrollbar-hover-black::-webkit-scrollbar-thumb:hover {
+.scrollbar-track-gray-200::-webkit-scrollbar-track {
+    @apply bg-gray-200
+}
+
+.scrollbar-thumb-dark-gray-400::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 rounded-full border-2 border-gray-400
+
+}
+
+.scrollbar-hover-black::-webkit-scrollbar-thumb:hover {
     @apply bg-black
-  }
+}
+
+input[type="range"] {
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-right: 15px;
+    width: 100%;
+    height: 7px;
+    background-color: #7ee8fa;
+    border-radius: 5px;
+    background-image: linear-gradient(315deg, #7ee8fa 0%, #80ff72 74%);
+    background-repeat: no-repeat;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: rgb(34, 197, 94);
+    cursor: ew-resize;
+    box-shadow: 0 0 2px 0 #555;
+    transition: background .2s ease-in-out;
+}
+
+input[type=range]::-webkit-slider-runnable-track  {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+}
