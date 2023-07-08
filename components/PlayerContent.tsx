@@ -9,6 +9,7 @@ import {HiSpeakerWave, HiSpeakerXMark} from "react-icons/hi2";
 import Slider from "@/components/Slider";
 import usePlayer from "@/hooks/usePlayer";
 import useSound from "use-sound";
+import * as RadixSlider from "@radix-ui/react-slider";
 
 interface PlayerContentProps {
     song: Song;
@@ -147,15 +148,22 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
                         {time.min}:{time.sec.length === 1 ? "0" + time.sec : time.sec}
                     </p>
                 </div>
-                <input
-                    type="range"
+                <RadixSlider.Root
+                    className="relative flex items-center select-none touch-none w-full h-5"
+                    value={[seconds!]}
+                    onValueChange={(newValue) => {
+                        sound.seek([newValue[0]]);
+                    }}
                     min={0}
                     max={duration! / 1000}
-                    value={seconds}
-                    onChange={(e) => {
-                        sound.seek([e.target.value]);
-                    }}
-                />
+                    step={1}
+                    aria-label="Duration"
+                >
+                    <RadixSlider.Track className="bg-neutral-600 relative grow rounded-full h-[7px]">
+                        <RadixSlider.Range className="absolute bg-green-600 rounded-full h-full"/>
+                    </RadixSlider.Track>
+                    <RadixSlider.Thumb className="block w-[14px] h-[14px] bg-white rounded-full hover:w-[20px] hover:h-[20px] focus:outline-0 focus:shadow" aria-label="Duration" />
+                </RadixSlider.Root>
             </div>
             <div className="
             flex xsm:flex-col items-center gap-y-2
