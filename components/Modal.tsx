@@ -70,6 +70,7 @@ const Modal: FC<ModalProps> = ({isOpen, onChange, description, children, title})
                             text-sm
                             leading-normal
                             text-center
+                            pb-2
                         "
                     >
                         {description}
