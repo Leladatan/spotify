@@ -7,8 +7,7 @@ import {Auth} from "@supabase/auth-ui-react";
 import {ThemeSupa} from "@supabase/auth-ui-shared";
 import useAuthModal from "@/hooks/useAuthModal";
 
-const AuthModal: FC = ({}) => {
-
+const AuthModal: FC = () => {
     const supabaseClient = useSupabaseClient();
     const router = useRouter();
     const {session} = useSessionContext();

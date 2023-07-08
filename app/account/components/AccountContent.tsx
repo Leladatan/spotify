@@ -7,18 +7,25 @@ import Loader from "@/components/Loader";
 import Button from "@/components/Button";
 import Library from "@/components/Library";
 import {Song} from "@/types";
-import LikedContent from "@/app/liked/components/LikedContent";
+import useAccountModal from "@/hooks/useAccountModal";
+import useLoadImageUser from "@/hooks/useLoadImageUser";
 
 interface AccountContentProps {
     userData: any;
     songs: Song[];
-    songsLiked: Song[];
 }
 
-const AccountContent: FC<AccountContentProps> = ({userData, songs, songsLiked}) => {
-    userData = JSON.parse(userData["value"]);
+const AccountContent: FC<AccountContentProps> = ({userData, songs}) => {
     const router = useRouter();
+    const accountModal = useAccountModal();
     const {isLoading, user} = useUser();
+    const imageUrl = useLoadImageUser(userData);
+
+    console.log(userData)
+
+    const onClick = () => {
+        return accountModal.onOpen();
+    };
 
     useEffect(() => {
         if (!isLoading && !user) {
@@ -33,15 +40,14 @@ const AccountContent: FC<AccountContentProps> = ({userData, songs, songsLiked}) 
     return (
         <div className="mb-7 px-6 xsm:px-2 flex flex-col xsm:items-center gap-y-6">
             <div className="flex acc:flex-col gap-x-6 acc:gap-y-4 acc:gap-x-0">
-                <Image src={userData[0]?.avatar_url || '/images/liked.png'} className="rounded-full" width={200}
+                <Image src={imageUrl || '/images/liked.png'} className="rounded-full" width={200}
                        height={200} loading="lazy" alt="Profile image"/>
                 <div className="flex flex-col gap-y-2">
                     <h2>User: {userData[0]?.full_name}</h2>
                     <h2>E-mail: <span>{user?.email}</span></h2>
                     <Button
                         className="w-[250px] h-[50px]"
-                        onClick={() => {
-                        }}
+                        onClick={onClick}
                     >
                         Edit profile
                     </Button>
