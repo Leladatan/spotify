@@ -20,11 +20,15 @@ const AccountContent: FC<AccountContentProps> = ({userData}) => {
         }
     }, [isLoading, user, router]);
 
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
+
     return (
         <div className="mb-7 px-6">
             <h1>Profile: {userData[0]?.id}</h1>
             <Image src={userData[0]?.avatar_url || '/images/liked.png'} width={200} height={200} loading="lazy" alt="Profile image"/>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col">
                 <h2>User: {userData[0]?.full_name}</h2>
                 <h2>E-mail: <span>{user?.email}</span></h2>
             </div>
