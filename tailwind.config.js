@@ -13,6 +13,7 @@ module.exports = {
     screens: {
       'xsm': {'max': '455px'},
       'xs': '455px',
+      'acc': {'max': '855px'},
       ...defaultTheme.screens,
     },
   },

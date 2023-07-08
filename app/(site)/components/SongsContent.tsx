@@ -5,6 +5,8 @@ import SongItem from "@/components/SongItem";
 import useOnPlay from "@/hooks/useOnPlay";
 import usePlayer from "@/hooks/usePlayer";
 import {twMerge} from "tailwind-merge";
+import {useUser} from "@/hooks/useUser";
+import Loader from "@/components/Loader";
 
 interface SongsContentProps {
     songs: Song[];
@@ -13,6 +15,11 @@ interface SongsContentProps {
 const SongsContent: FC<SongsContentProps> = ({songs}) => {
     const onPlay = useOnPlay(songs);
     const player = usePlayer();
+    const {isLoading} = useUser();
+
+    if (isLoading) {
+        return <Loader />
+    }
 
     if (songs.length === 0) {
         return (

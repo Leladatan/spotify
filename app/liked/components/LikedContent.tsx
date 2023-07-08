@@ -8,6 +8,7 @@ import LikeButton from "@/components/LikeButton";
 import useOnPlay from "@/hooks/useOnPlay";
 import {twMerge} from "tailwind-merge";
 import usePlayer from "@/hooks/usePlayer";
+import Loader from "@/components/Loader";
 
 interface LikedContentProps {
     songs: Song[];
@@ -30,7 +31,9 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
         return <div className="flex flex-col gap-y-2 w-full px-6 text-neutral-400">No liked songs</div>
     }
 
-    console.log(songs);
+    if (isLoading) {
+        return <Loader />
+    }
 
     return (
         <div className={twMerge(`flex flex-col gap-y-2 w-full px-6 h-full`, player.activeId && "h-[calc(100%-130px)]")}>

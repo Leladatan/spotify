@@ -6,6 +6,8 @@ import LikeButton from "@/components/LikeButton";
 import useOnPlay from "@/hooks/useOnPlay";
 import {twMerge} from "tailwind-merge";
 import usePlayer from "@/hooks/usePlayer";
+import Loader from "@/components/Loader";
+import {useUser} from "@/hooks/useUser";
 
 interface SearchContent {
     songs: Song[];
@@ -14,6 +16,7 @@ interface SearchContent {
 const SearchContent: FC<SearchContent> = ({songs}) => {
     const player = usePlayer();
     const onPlay = useOnPlay(songs);
+    const {isLoading} = useUser();
 
     if (songs.length === 0) {
         return (
@@ -21,6 +24,10 @@ const SearchContent: FC<SearchContent> = ({songs}) => {
                 No songs found.
             </div>
         )
+    }
+
+    if (isLoading) {
+        return <Loader />
     }
 
     return (

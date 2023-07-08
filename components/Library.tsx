@@ -3,11 +3,12 @@ import React, {FC, useContext} from 'react';
 import {TbPlaylist} from "react-icons/tb";
 import {AiOutlinePlus} from "react-icons/ai";
 import useAuthModal from "@/hooks/useAuthModal";
-import {UserContext} from "@/hooks/useUser";
+import {UserContext, useUser} from "@/hooks/useUser";
 import useUploadModal from "@/hooks/useUploadModal";
 import {Song} from "@/types";
 import MediaItem from "@/components/MediaItem";
 import useOnPlay from "@/hooks/useOnPlay";
+import Loader from "@/components/Loader";
 
 interface LibraryProps {
     songs: Song[];
@@ -16,6 +17,7 @@ interface LibraryProps {
 const Library: FC<LibraryProps> = ({songs}) => {
     const onPlay = useOnPlay(songs);
     const authModal = useAuthModal();
+    const {isLoading} = useUser();
     const uploadModal = useUploadModal();
     const context = useContext(UserContext);
     if (!context) {
@@ -29,6 +31,10 @@ const Library: FC<LibraryProps> = ({songs}) => {
 
         return uploadModal.onOpen();
     };
+
+    if (isLoading) {
+        return <Loader />
+    }
 
     return (
         <div className="flex flex-col">

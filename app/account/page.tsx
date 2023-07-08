@@ -3,6 +3,8 @@ import Header from "@/components/Header";
 import type {Metadata} from 'next';
 import AccountContent from "@/app/account/components/AccountContent";
 import getUserId from "@/actions/getUserId";
+import getSongsByUserId from "@/actions/getSongsByUserId";
+import getLikedSongs from "@/actions/getLikedSongs";
 
 export const metadata: Metadata = {
     title: 'Spotify: profile',
@@ -11,6 +13,8 @@ export const metadata: Metadata = {
 
 const AccountPage: NextPage = async () => {
     const userData = getUserId();
+    const userSongs = await getSongsByUserId();
+    const songsLiked = await getLikedSongs();
 
     return (
         <div className="
@@ -20,6 +24,7 @@ const AccountPage: NextPage = async () => {
             w-full 
             overflow-hidden 
             overflow-y-auto
+            scrollbar-thin
         ">
             <Header className="from-bg-neutral-900">
                 <div className="mb-2 flex flex-col gap-y-6">
@@ -28,7 +33,7 @@ const AccountPage: NextPage = async () => {
                     </h1>
                 </div>
             </Header>
-            <AccountContent userData={userData}/>
+            <AccountContent userData={userData} songs={userSongs} songsLiked={songsLiked}/>
         </div>
     );
 };
