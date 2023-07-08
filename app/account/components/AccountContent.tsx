@@ -41,7 +41,7 @@ const AccountContent: FC<AccountContentProps> = ({userData, songs}) => {
         <div className="mb-7 px-6 xsm:px-2 flex flex-col xsm:items-center gap-y-6">
             <div className="flex acc:flex-col gap-x-6 acc:gap-y-4 acc:gap-x-0">
                 <Image src={imageUrl || '/images/liked.png'} priority className="rounded-full" width={200}
-                       height={200} loading="lazy" alt="Profile image"/>
+                       height={200} alt="Profile image"/>
                 <div className="flex flex-col gap-y-2">
                     <h2>User: {userData[0]?.full_name}</h2>
                     <h2>E-mail: <span>{user?.email}</span></h2>
