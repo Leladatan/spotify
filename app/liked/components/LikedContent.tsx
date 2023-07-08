@@ -30,6 +30,8 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
         return <div className="flex flex-col gap-y-2 w-full px-6 text-neutral-400">No liked songs</div>
     }
 
+    console.log(songs);
+
     return (
         <div className={twMerge(`flex flex-col gap-y-2 w-full px-6 h-full`, player.activeId && "h-[calc(100%-130px)]")}>
             {songs.map((song) => (

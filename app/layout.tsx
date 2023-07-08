@@ -24,7 +24,6 @@ export const revalidate = 0;
 
 const Layout = async ({children,}: { children: ReactNode }) => {
     const userSongs = await getSongsByUserId();
-
     return (
         <html lang="en">
         <body className={figtree.className}>

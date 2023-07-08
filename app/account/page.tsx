@@ -2,13 +2,16 @@ import {NextPage} from "next";
 import Header from "@/components/Header";
 import type {Metadata} from 'next';
 import AccountContent from "@/app/account/components/AccountContent";
+import getUserId from "@/actions/getUserId";
 
 export const metadata: Metadata = {
     title: 'Spotify: profile',
     description: 'Spotify profile',
 }
 
-const AccountPage: NextPage = () => {
+const AccountPage: NextPage = async () => {
+    const userData = getUserId();
+
     return (
         <div className="
             bg-neutral-900 
@@ -25,7 +28,7 @@ const AccountPage: NextPage = () => {
                     </h1>
                 </div>
             </Header>
-            <AccountContent/>
+            <AccountContent userData={userData}/>
         </div>
     );
 };
