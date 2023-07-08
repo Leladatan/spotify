@@ -10,10 +10,9 @@ interface AccountContentProps {
 }
 
 const AccountContent: FC<AccountContentProps> = ({userData}) => {
+    userData = JSON.parse(userData["value"]);
     const router = useRouter();
     const {isLoading, user} = useUser();
-    userData = JSON.parse(userData["value"]);
-    // const arr = Object.values(userData[0]);
 
     useEffect(() => {
         if (!isLoading && !user) {
@@ -21,16 +20,14 @@ const AccountContent: FC<AccountContentProps> = ({userData}) => {
         }
     }, [isLoading, user, router]);
 
-    // console.log(userData);
-    // console.log(arr);
-
     return (
         <div className="mb-7 px-6">
-            <h1>Profile</h1>
-            <h1>{userData[0]?.id}</h1>
-            <h1>{userData[0]?.full_name}</h1>
-            <h1>E-mail: {user?.email}</h1>
+            <h1>Profile: {userData[0]?.id}</h1>
             <Image src={userData[0]?.avatar_url || '/images/liked.png'} width={200} height={200} loading="lazy" alt="Profile image"/>
+            <div className="flex flex-col items-center">
+                <h2>User: {userData[0]?.full_name}</h2>
+                <h2>E-mail: <span>{user?.email}</span></h2>
+            </div>
         </div>
     );
 }
