@@ -21,8 +21,6 @@ const AccountContent: FC<AccountContentProps> = ({userData, songs}) => {
     const {isLoading, user} = useUser();
     const imageUrl = useLoadImageUser(userData);
 
-    console.log(userData)
-
     const onClick = () => {
         return accountModal.onOpen();
     };

@@ -37,9 +37,6 @@ const AccountModal: FC = () => {
 
             const imageFile = values.image?.[0];
 
-            console.log(values)
-            console.log(imageFile)
-
             if (!imageFile || !user) {
                 toast.error('Missing fields');
                 return;
