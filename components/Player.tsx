@@ -20,8 +20,6 @@ const Player: FC = () => {
         return null;
     }
 
-    console.log("parent");
-
     return (
         <div className="
             fixed bottom-0
