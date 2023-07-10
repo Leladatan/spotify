@@ -10,6 +10,7 @@ import {useSupabaseClient} from "@supabase/auth-helpers-react";
 import {useRouter} from "next/navigation";
 import {useUser} from "@/hooks/useUser";
 import useAccountModal from "@/hooks/useAccountModal";
+import {translit} from "@/functions";
 
 const AccountModal: FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -47,7 +48,7 @@ const AccountModal: FC = () => {
             const {data: imageData, error: imageError} = await supabaseClient
                 .storage
                 .from('images')
-                .upload(`image-${values.full_name}-${uniqueID}`, imageFile, {
+                .upload(`image-${translit(values.full_name)}-${uniqueID}`, imageFile, {
                     cacheControl: '3600',
                     upsert: false
                 });
