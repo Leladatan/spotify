@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import {UserContext} from "@/hooks/useUser";
 import {useSupabaseClient} from "@supabase/auth-helpers-react";
 import {useRouter} from "next/navigation";
+import {translit} from "@/functions";
 
 const UploadModal: FC = ({}) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -55,7 +56,7 @@ const UploadModal: FC = ({}) => {
             const {data: songData, error: songError} = await supabaseClient
                 .storage
                 .from('songs')
-                .upload(`song-${values.title}-${uniqueID}`, songFile, {
+                .upload(`song-${translit(values.title)}-${uniqueID}`, songFile, {
                     cacheControl: '3600',
                     upsert: false
                 });
@@ -68,7 +69,7 @@ const UploadModal: FC = ({}) => {
             const {data: imageData, error: imageError} = await supabaseClient
                 .storage
                 .from('images')
-                .upload(`image-${values.title}-${uniqueID}`, imageFile, {
+                .upload(`image-${translit(values.title)}-${uniqueID}`, imageFile, {
                     cacheControl: '3600',
                     upsert: false
                 });
