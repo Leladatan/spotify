@@ -28,15 +28,3 @@ export const translit = (word: string): string => {
 
     return answer;
 }
-
-export const randomSongs = (arr: any) => {
-    if (!arr) {
-        return;
-    }
-
-    const newArr = arr.sort(() => {
-        return 0.5 - Math.random();
-    });
-    
-    return newArr;
-}
