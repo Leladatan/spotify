@@ -1,5 +1,7 @@
+import {Song} from "@/types";
+
 export const translit = (word: string): string => {
-    let answer:string = '';
+    let answer: string = '';
     const converter: any = {
         'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd',
         'е': 'e', 'ё': 'e', 'ж': 'zh', 'з': 'z', 'и': 'i',
@@ -27,4 +29,16 @@ export const translit = (word: string): string => {
     }
 
     return answer;
+}
+
+export const randomSongs = (arr: Song[]) => {
+    if (!arr) {
+        return;
+    }
+
+    const newArr = arr.toSorted(() => {
+        return 0.5 - Math.random();
+    });
+    
+    return newArr;
 }
