@@ -149,7 +149,6 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
 
     return (
         <>
-
             <div>
                 <div className="flex items-center justify-between">
                     <p className="text-gray-300 truncate text-xs">
@@ -159,6 +158,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
                         {time.min}:{time.sec.length === 1 ? "0" + time.sec : time.sec}
                     </p>
                 </div>
+                
                 <RadixSlider.Root
                     className="relative flex items-center select-none touch-none w-full h-5"
                     value={[seconds!]}
@@ -175,10 +175,13 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
                     </RadixSlider.Track>
                     <RadixSlider.Thumb className="block w-[14px] h-[14px] bg-white rounded-full hover:w-[20px] hover:h-[20px] focus:outline-0 focus:shadow" aria-label="Duration" />
                 </RadixSlider.Root>
+                
             </div>
+            
             <div className="
             flex xsm:flex-col items-center gap-y-2
             ">
+                
                 <div className="flex w-full justify-start xsm:justify-center">
                     <div className="flex items-center gap-x-4">
                         <MediaItem data={song}/>
@@ -205,14 +208,14 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
                     />
                 </div>
 
-                <div className="hidden md:flex w-full justify-end pr-2">
+                <div className="hidden md:flex w-full justify-end items-center gap-x-6 pr-2">
                     <AiOutlineSync onClick={toggleRepeat} className="cursor-pointer" color={isRepeat ? '#22c55e': 'white'} size={25} />
                     <div className="flex items-center gap-x-2 w-[120px]">
                         <VolumeIcon onClick={toggleMute} className="cursor-pointer" size={34}/>
                         <Slider value={volume} onChange={handleValue}/>
                     </div>
                 </div>
-
+                
             </div>
         </>
     );
