@@ -34,7 +34,7 @@ export const randomSongs = (arr: any) => {
         return;
     }
 
-    const newArr = arr.sord(() => {
+    const newArr = arr.sort(() => {
         return 0.5 - Math.random();
     });
     
