@@ -9,7 +9,7 @@ import useOnPlay from "@/hooks/useOnPlay";
 import {twMerge} from "tailwind-merge";
 import usePlayer from "@/hooks/usePlayer";
 import Loader from "@/components/Loader";
-import randomSongs from "@/functions";
+import {randomSongs} from "@/functions";
 
 interface LikedContentProps {
     songs: Song[];
