@@ -22,11 +22,7 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
 
     const onPlay = useOnPlay(songs);
 
-    const handleRandomSongs = () => {
-        return randomSongs(songs);
-    }
-
-    console.log(handleRandomSongs);
+    console.log(randomSongs(songs));
 
     useEffect(() => {
         if (!isLoading && !user) {
