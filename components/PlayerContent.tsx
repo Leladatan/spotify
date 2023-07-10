@@ -136,10 +136,10 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         }
     }
 
-    console.log(duration);
-    console.log(seconds);
-    console.log(duration / 1000);
-    console.log([seconds]);
+    console.log(duration!);
+    console.log(seconds!);
+    console.log(duration! / 1000);
+    console.log([seconds!]);
 
     return (
         <>
