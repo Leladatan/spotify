@@ -28,3 +28,12 @@ export const translit = (word: string): string => {
 
     return answer;
 }
+
+export const debounce = (callback: any, delay: number): any => {
+    let timeoutId;
+
+    return () => {
+        clearTimeOut(timeoutId);
+        timeoutId = setTimeout(callback, delay);
+    }
+}
