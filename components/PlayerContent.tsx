@@ -209,13 +209,15 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
                 </div>
 
                 <div className="hidden md:flex w-full justify-end items-center gap-x-6 pr-2">
-                    <AiOutlineSync onClick={toggleRepeat} className="cursor-pointer" color={isRepeat ? '#22c55e': 'text-neutral-400'} size={25} />
+                    <AiOutlineSync onClick={toggleRepeat} className="cursor-pointer" 
+                                   color={isRepeat ? '#22c55e': 'rgb(163 163 163)'} size={25} 
+                    />
                     <div className="flex items-center gap-x-2 w-[120px]">
                         <VolumeIcon onClick={toggleMute} className="cursor-pointer" size={34}/>
                         <Slider value={volume} onChange={handleValue}/>
                     </div>
                 </div>
-                
+
             </div>
         </>
     );
