@@ -12,7 +12,7 @@ const Player: FC = () => {
     const {song} = useGetSongById(String(player.activeId));
     const songUrl = useLoadSongUrl(song!);
 
-    useEffect(() => {
+    useEffect((): void => {
         localStorage.getItem("volume") === null ? localStorage.setItem("volume", "1") : localStorage.getItem("volume");
     }, []);
 

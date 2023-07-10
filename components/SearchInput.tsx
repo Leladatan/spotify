@@ -10,7 +10,7 @@ const SearchInput: FC = () => {
     const [value, setValue] = useState<string>("");
     const debouncedValue = useDebounce<string>(value, 500);
 
-    useEffect(() => {
+    useEffect((): void => {
         const query = {
             title: debouncedValue,
         };

@@ -32,7 +32,7 @@ const UploadModal: FC = ({}) => {
     }
     const {user} = context;
 
-    const onChange = (open: boolean) => {
+    const onChange = (open: boolean): void => {
         if (!open) {
             reset();
             uploadModal.onClose();

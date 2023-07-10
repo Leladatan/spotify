@@ -12,7 +12,7 @@ interface MediaItemProsp {
 const MediaItem: FC<MediaItemProsp> = ({data, onClick}) => {
     const imageUrl = useLoadImage(data);
 
-    const handleClick = () => {
+    const handleClick = (): void => {
         if (onClick) {
             return onClick(data.id);
         }

@@ -24,7 +24,7 @@ const Library: FC<LibraryProps> = ({songs}) => {
         return null;
     }
     const {user} = context;
-    const onClick = () => {
+    const onClick = (): void => {
         if (!user) {
             return authModal.onOpen();
         }

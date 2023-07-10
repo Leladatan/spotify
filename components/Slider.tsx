@@ -8,7 +8,7 @@ interface SliderProps {
 }
 
 const Slider: FC<SliderProps> = ({value = 1, onChange}) => {
-    const handleChange = (newValue: number[]) => {
+    const handleChange = (newValue: number[]): void => {
         localStorage.setItem("volume", String(newValue[0]));
         onChange?.(newValue[0]);
     }

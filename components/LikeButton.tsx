@@ -57,7 +57,7 @@ const LikeButton: FC<LikeButtonProps> = ({ songId }) => {
 
     const user = useUser().user;
 
-    useEffect(() => {
+    useEffect((): void => {
         if (!user?.id) {
             return
         }

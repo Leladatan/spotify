@@ -40,7 +40,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         setVolume(value);
     }
 
-    const onPlayNext = () => {
+    const onPlayNext = (): void => {
         if (player.ids.length === 0) {
             return;
         }
@@ -56,7 +56,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         player.setId(nextSong);
     };
 
-    const onPlayPrev = () => {
+    const onPlayPrev = (): void => {
         if (player.ids.length === 0) {
             return;
         }
@@ -76,14 +76,14 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         songUrl,
         {
             volume: volume,
-            onplay: () => {
+            onplay: () : void=> {
                 setIsPlaying(true)
             },
-            onend: () => {
+            onend: (): void => {
                 setIsPlaying(false);
                 onPlayNext();
             },
-            onpause: () => setIsPlaying(false),
+            onpause: (): void => setIsPlaying(false),
             format: ['mp3']
         }
     );
@@ -94,7 +94,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         return () => sound?.unload();
     }, [sound]);
 
-    useEffect(() => {
+    useEffect((): void => {
         if (duration) {
             const sec = duration / 1000;
             const min = String(Math.floor(sec / 60));
@@ -107,7 +107,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
     }, [isPlaying, duration]);
 
     useEffect(() => {
-        const interval = setInterval(() => {
+        const interval = setInterval((): void => {
             if (sound) {
                 setSeconds(sound.seek([]));
                 const min = String(Math.floor(sound.seek([]) / 60));
@@ -121,15 +121,14 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         return () => clearInterval(interval);
     }, [sound]);
 
-    useEffect(() => {
+    useEffect((): void => {
         if (isRepeat && String(seconds! + 1).slice(0, 3) === String(duration!).slice(0, 3) ||
-            isRepeat && String(seconds!).slice(0, 3) === String(duration!).slice(0, 3)
-        ) {
+            isRepeat && String(seconds! + 0.5).slice(0, 3) === String(duration!).slice(0, 3)) {
             setSeconds(sound.seek([0]));
         }
     }, [sound, isRepeat, duration, seconds]);
 
-    const handlePlay = () => {
+    const handlePlay = (): void => {
         if (!isPlaying) {
             play();
         } else {
@@ -137,7 +136,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         }
     };
 
-    const toggleMute = () => {
+    const toggleMute = (): void => {
         if (volume === 0) {
             setVolume(Number(localStorage.getItem("volume")));
         } else {

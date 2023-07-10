@@ -25,7 +25,7 @@ const AccountModal: FC = () => {
     const supabaseClient = useSupabaseClient();
     const router = useRouter();
 
-    const onChange = (open: boolean) => {
+    const onChange = (open: boolean): void => {
         if (!open) {
             reset();
             accountModal.onClose();

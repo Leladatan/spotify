@@ -13,7 +13,7 @@ interface ListItemProps {
 const ListItem: FC<ListItemProps> = ({image, name, href}) => {
     const router = useRouter();
 
-    const onClick = ():void => {
+    const onClick = (): void => {
         router.push(href);
     }
 

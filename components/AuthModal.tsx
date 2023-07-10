@@ -13,7 +13,7 @@ const AuthModal: FC = () => {
     const {session} = useSessionContext();
     const { onClose, isOpen } = useAuthModal();
 
-    useEffect(() => {
+    useEffect((): void => {
         if (session) {
             router.refresh();
             onClose();
