@@ -1,5 +1,3 @@
-import {Song} from "@/types";
-
 export const translit = (word: string): string => {
     let answer: string = '';
     const converter: any = {
@@ -31,7 +29,7 @@ export const translit = (word: string): string => {
     return answer;
 }
 
-export const randomSongs = (arr: Song[]) => {
+export const randomSongs = (arr: any) => {
     if (!arr) {
         return;
     }
