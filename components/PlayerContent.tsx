@@ -31,7 +31,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         sec: "0"
     });
 
-    const [seconds, setSeconds] = useState();
+    const [seconds, setSeconds] = useState<number>();
 
     const Icon = isPlaying ? BsPauseFill : BsPlayFill;
     const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
@@ -104,14 +104,14 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
                 sec: secRemain
             });
         }
-    }, [isPlaying, duration]);
+    }, [isPlaying]);
 
     useEffect(() => {
         if (isRepeat && String(seconds! + 1).slice(0, 3) === String(duration!).slice(0, 3)) {
             setSeconds(sound.seek([0]));
             return () => clearInterval(interval);
         }
-        
+
         const interval = setInterval(() => {
             if (sound) {
                 setSeconds(sound.seek([]));
@@ -124,7 +124,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
             }
         }, 1000);
         return () => clearInterval(interval);
-    }, [sound, isRepeat]);
+    }, [sound]);
 
     const handlePlay = () => {
         if (!isPlaying) {
@@ -205,7 +205,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
                 </div>
 
                 <div className="hidden md:flex w-full justify-end pr-2">
-                    <AiOutlineSync onClick={toggleRepeat} className={`cursor-pointer ${isRepeat ? "bg-green-600" : "bg-gray-500"}`} size={34} />
+                    <AiOutlineSync onClick={toggleRepeat} className="cursor-pointer" color={isRepeat ? "green": "white"} size={34} />
                     <div className="flex items-center gap-x-2 w-[120px]">
                         <VolumeIcon onClick={toggleMute} className="cursor-pointer" size={34}/>
                         <Slider value={volume} onChange={handleValue}/>
