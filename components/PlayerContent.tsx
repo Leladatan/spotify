@@ -129,8 +129,6 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         }
     }, [sound, isRepeat, duration, seconds]);
 
-    console.log(isRepeat && String(seconds!).slice(0, 3) === String(duration!).slice(0, 3))
-
     const handlePlay = () => {
         if (!isPlaying) {
             play();
