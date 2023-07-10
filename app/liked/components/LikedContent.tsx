@@ -22,8 +22,8 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
 
     const onPlay = useOnPlay(songs);
 
-    const handleRandomSongs = async () => {
-        return await randomSongs(songs);
+    const handleRandomSongs = () => {
+        return randomSongs(songs);
     }
 
     console.log(handleRandomSongs);
