@@ -22,8 +22,6 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
 
     const onPlay = useOnPlay(songs);
 
-    console.log(randomSongs(songs));
-
     useEffect(() => {
         if (!isLoading && !user) {
             router.replace('/');
