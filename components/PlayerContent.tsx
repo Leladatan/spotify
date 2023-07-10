@@ -122,10 +122,14 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
     }, [sound]);
 
     useEffect(() => {
-        if (isRepeat && String(seconds! + 1).slice(0, 3) === String(duration!).slice(0, 3)) {
+        if (isRepeat && String(seconds! + 1).slice(0, 3) === String(duration!).slice(0, 3) ||
+            isRepeat && String(seconds!).slice(0, 3) === String(duration!).slice(0, 3)
+        ) {
             setSeconds(sound.seek([0]));
         }
     }, [sound, isRepeat, duration, seconds]);
+
+    console.log(isRepeat && String(seconds!).slice(0, 3) === String(duration!).slice(0, 3))
 
     const handlePlay = () => {
         if (!isPlaying) {
@@ -209,8 +213,8 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
                 </div>
 
                 <div className="hidden md:flex w-full justify-end items-center gap-x-6 pr-2">
-                    <AiOutlineSync onClick={toggleRepeat} className="cursor-pointer" 
-                                   color={isRepeat ? '#22c55e': 'rgb(163 163 163)'} size={25} 
+                    <AiOutlineSync onClick={toggleRepeat} className="cursor-pointer"
+                                   color={isRepeat ? '#22c55e': 'rgb(163 163 163)'} size={25}
                     />
                     <div className="flex items-center gap-x-2 w-[120px]">
                         <VolumeIcon onClick={toggleMute} className="cursor-pointer" size={34}/>
