@@ -15,7 +15,7 @@ const getSongsByTitle = async (title: string): Promise<Song[]> => {
     const {data, error} = await supabase
         .from('songs')
         .select('*')
-        .or(`title.eq.${title}, author.eq.${title}`)
+        .or(`title.eq.%${title}%, author.eq.%${title}%`)
         .order('created_at', {ascending: false});
 
     if (error) {
