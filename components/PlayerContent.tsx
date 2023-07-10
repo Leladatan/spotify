@@ -103,7 +103,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
                 sec: secRemain
             });
         }
-    }, [isPlaying]);
+    }, [isPlaying, duration]);
 
     useEffect(() => {
         const interval = setInterval(() => {
