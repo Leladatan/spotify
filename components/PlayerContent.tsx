@@ -136,10 +136,6 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         }
     }
 
-    console.log(seconds!.slice(0, 3));
-    console.log(duration!.slice(0, 3));
-    console.log(seconds!.slice(0, 3) === duration!.slice(0, 3) ? "Mem" : "Lol");
-
     return (
         <>
 
