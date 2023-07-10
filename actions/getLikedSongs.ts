@@ -28,7 +28,7 @@ const getLikedSongs = async (): Promise<Song[]> => {
         return [];
     }
     return data.map((song) => ({
-        ...song.songs
+        ...song.songs.sort(() => Math.random() - 0.5)
     }));
 }
 
