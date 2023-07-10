@@ -4,7 +4,7 @@ import {Song} from "@/types";
 import MediaItem from "@/components/MediaItem";
 import LikeButton from "@/components/LikeButton";
 import {BsPauseFill, BsPlayFill} from "react-icons/bs";
-import {AiFillStepBackward, AiFillStepForward} from "react-icons/ai";
+import {AiFillStepBackward, AiFillStepForward, AiOutlineSync} from "react-icons/ai";
 import {HiSpeakerWave, HiSpeakerXMark} from "react-icons/hi2";
 import Slider from "@/components/Slider";
 import usePlayer from "@/hooks/usePlayer";
@@ -20,6 +20,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
     const player = usePlayer();
     const [volume, setVolume] = useState<number>(Number(localStorage.getItem("volume")));
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
+    const [isRepeat, setIsRepeat] = useState<boolean>(false);
 
     const [time, setTime] = useState({
         min: "0",
@@ -103,9 +104,14 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
                 sec: secRemain
             });
         }
-    }, [isPlaying]);
+    }, [isPlaying, duration]);
 
     useEffect(() => {
+        if (isRepeat && String(seconds! + 1).slice(0, 3) === String(duration!).slice(0, 3)) {
+            setSeconds(sound.seek([0]));
+            return () => clearInterval(interval);
+        }
+        
         const interval = setInterval(() => {
             if (sound) {
                 setSeconds(sound.seek([]));
@@ -118,7 +124,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
             }
         }, 1000);
         return () => clearInterval(interval);
-    }, [sound]);
+    }, [sound, isRepeat]);
 
     const handlePlay = () => {
         if (!isPlaying) {
@@ -136,8 +142,9 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         }
     }
 
-    console.log(seconds!);
-    console.log(String(seconds!+1).slice(0, 3) === String(duration!).slice(0, 3) ? setSeconds(sound.seek([0])) : "Lol");
+    const toggleRepeat = (): void => {
+        setIsRepeat(prev => !prev);
+    }
 
     return (
         <>
@@ -198,6 +205,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
                 </div>
 
                 <div className="hidden md:flex w-full justify-end pr-2">
+                    <AiOutlineSync onClick={toggleRepeat} className={`cursor-pointer ${isRepeat ? "bg-green-600" : "bg-gray-500"}`} size={34} />
                     <div className="flex items-center gap-x-2 w-[120px]">
                         <VolumeIcon onClick={toggleMute} className="cursor-pointer" size={34}/>
                         <Slider value={volume} onChange={handleValue}/>
