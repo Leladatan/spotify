@@ -9,7 +9,6 @@ import useOnPlay from "@/hooks/useOnPlay";
 import {twMerge} from "tailwind-merge";
 import usePlayer from "@/hooks/usePlayer";
 import Loader from "@/components/Loader";
-import {randomSongs} from "@/functions";
 
 interface LikedContentProps {
     songs: Song[];
@@ -19,7 +18,6 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
     const router = useRouter();
     const {isLoading, user} = useUser();
     const player = usePlayer();
-
     const onPlay = useOnPlay(songs);
 
     useEffect(() => {
@@ -38,9 +36,6 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
 
     return (
         <>
-            <button onClick={() => randomSongs(songs)}>
-                Random Songs
-            </button>
             <div className={twMerge(`flex flex-col gap-y-2 w-full px-6 h-full`, player.activeId && "h-[calc(100%-130px)]")}>
             {songs.map((song) => (
                 <div
