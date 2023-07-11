@@ -10,6 +10,7 @@ import MediaItem from "@/components/MediaItem";
 import useOnPlay from "@/hooks/useOnPlay";
 import Loader from "@/components/Loader";
 import {BsArrowDownUp} from "react-icons/bs";
+import {FaArrowsTurnToDots} from "react-icons/fa6";
 
 interface LibraryProps {
     songs: Song[];
