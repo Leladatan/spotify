@@ -12,7 +12,7 @@ body,
 }
 
 .scrollbar-thin::-webkit-scrollbar {
-    @apply w-2 h-2
+    @apply w-0 h-2
 }
 
 .scrollbar-track-gray-200::-webkit-scrollbar-track {
