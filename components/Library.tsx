@@ -45,7 +45,6 @@ const Library: FC<LibraryProps> = ({songs}) => {
     };
 
     const toggleReverse= (): void => {
-        songs.reverse();
         setIsReversed(prev => !prev);
     }
 
