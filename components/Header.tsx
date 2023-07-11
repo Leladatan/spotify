@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, {FC, useContext} from 'react';
 import {useRouter} from "next/navigation";
 import {twMerge} from "tailwind-merge";
@@ -89,8 +89,10 @@ const Header: FC<HeaderProps> = ({children, className, userData}) => {
                                 Logout
                             </Button>
                             {userData ?
-                                <Image src={imageUrl!} priority className="rounded-full" width={200}
-                                       height={200} alt="Profile image"/>
+                                <Image
+                                    onClick={() => router.push('/account')}
+                                    src={imageUrl!} priority className="rounded-full" width={42}
+                                       height={42} alt="Profile image"/>
                                 :
                                 <Button
                                     onClick={() => router.push('/account')}
