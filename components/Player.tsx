@@ -14,12 +14,12 @@ const Player: FC = () => {
     const songUrl: string = useLoadSongUrl(song!);
 
     window.addEventListener("keyup", (event) => {
-        if(event.key === "ArrowRight") {
+        if(event.key === "ArrowRight" && player.activeId && user) {
             event.preventDefault();
             console.log("right")
         }
 
-        if(event.key === "ArrowLeft") {
+        if(event.key === "ArrowLeft" && player.activeId && user) {
             event.preventDefault();
             console.log("Left")
         }
