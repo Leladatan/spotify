@@ -95,12 +95,12 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         const arrow: any = window.addEventListener("keyup", (event) => {
         if(event.key === "ArrowRight" && player.activeId && user) {
             event.preventDefault();
-            console.log("right")
+            onPlayNext();
         }
 
         if(event.key === "ArrowLeft" && player.activeId && user) {
             event.preventDefault();
-            console.log("Left")
+            onPlayPrev();
         }
 
     });
