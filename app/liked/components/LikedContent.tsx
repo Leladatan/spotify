@@ -33,6 +33,7 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
 
     const toggleRandom = (): void => {
         setIsRandom(prev => !prev);
+        setSongsData(songsData.sort(() => Math.random() - 0.5));
     }
 
     useEffect((): void => {
@@ -40,11 +41,6 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
             router.replace('/');
         }
     }, [isLoading, router, user]);
-
-    useEffect((): void => {
-        setSongsData(songsData.sort(() => Math.random() - 0.5));
-
-    }, [isRandom, songsData]);
 
     if (songs.length === 0) {
         return <div className="flex flex-col gap-y-2 w-full px-6 text-neutral-400">No liked songs</div>
