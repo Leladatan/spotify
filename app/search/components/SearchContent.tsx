@@ -22,7 +22,6 @@ const SearchContent: FC<SearchContent> = ({songs}) => {
     const {isLoading} = useUser();
 
     const toggleReverse= (): void => {
-        songs.reverse();
         setIsReversed(prev => !prev);
     }
 
