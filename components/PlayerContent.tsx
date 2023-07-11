@@ -7,6 +7,7 @@ import {BsPauseFill, BsPlayFill} from "react-icons/bs";
 import {AiFillStepBackward, AiFillStepForward, AiOutlineSync} from "react-icons/ai";
 import {HiSpeakerWave, HiSpeakerXMark} from "react-icons/hi2";
 import Slider from "@/components/Slider";
+import {useUser} from "@/hooks/useUser";
 import usePlayer from "@/hooks/usePlayer";
 import useSound from "use-sound";
 import * as RadixSlider from "@radix-ui/react-slider";
@@ -18,6 +19,7 @@ interface PlayerContentProps {
 
 const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
     const player = usePlayer();
+    const user = useUser().user;
     const [volume, setVolume] = useState<number>(Number(localStorage.getItem("volume")));
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [isRepeat, setIsRepeat] = useState<boolean>(false);
