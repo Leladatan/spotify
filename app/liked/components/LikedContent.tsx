@@ -10,7 +10,6 @@ import {twMerge} from "tailwind-merge";
 import usePlayer from "@/hooks/usePlayer";
 import Loader from "@/components/Loader";
 import {BsArrowDownUp} from "react-icons/bs";
-import Button from "@/components/Button";
 
 interface LikedContentProps {
     songs: Song[];
@@ -52,7 +51,9 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
 
     return (
         <>
-            <Button className="bg-white p-2 w-auto h-auto"><BsArrowDownUp size={26} onClick={toggleReverse} color={isReversed ? '#22c55e': 'rgb(163 163 163)'} className="text-neutral-400 cursor-pointer hover:text-white transition" /></Button>
+            <div className="flex items-center justify-items-start gap-x-4">
+                <h2 className="text-white text-4xl">Sort by:</h2><BsArrowDownUp size={26} onClick={toggleReverse} color={isReversed ? '#22c55e': 'rgb(163 163 163)'} className="text-neutral-400 cursor-pointer hover:text-white transition" />
+            </div>
             <div className={twMerge(`flex flex-col gap-y-2 w-full px-6 h-full`, player.activeId && "h-[calc(100%-130px)]")}>
                 {songsData.map((song) => (
                     <div
