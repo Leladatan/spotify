@@ -1,5 +1,5 @@
 "use client";
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {Song} from "@/types";
 import MediaItem from "@/components/MediaItem";
 import LikeButton from "@/components/LikeButton";
@@ -25,6 +25,10 @@ const SearchContent: FC<SearchContent> = ({songs}) => {
         setIsReversed(prev => !prev);
         setSongsData(songsData.reverse());
     }
+
+    useEffect((): void => {
+        setSongsData(songs);
+    }, [songs]);
 
     if (songs.length === 0) {
         return (
