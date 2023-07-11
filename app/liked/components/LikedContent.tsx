@@ -66,7 +66,7 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
                         key={song.id}
                         className="flex items-center gap-x-4 w-full"
                     >
-                        <div className="xs:flex-1 xsm:w-[225px]">
+                        <div className="xxs:flex-1 xsm:w-[225px]">
                             <MediaItem onClick={(id: string) => onPlay(id)} data={song}/>
                         </div>
                         <LikeButton songId={song.id}/>
