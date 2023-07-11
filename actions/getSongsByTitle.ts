@@ -9,13 +9,15 @@ const getSongsByTitle = async (title: string): Promise<Song[]> => {
     });
 
      if (!title) {
-        return await getSongs();
+        const allSongs = await getSongs();
+        return allSongs;
      }
 
     const {data, error} = await supabase
         .from('songs')
         .select('*')
-        .ilike('title', `%${title}%`)
+        .eq('title', `%${title}%`)
+        .or(`author, ${title}`)
         .order('created_at', {ascending: false});
 
     if (error) {
