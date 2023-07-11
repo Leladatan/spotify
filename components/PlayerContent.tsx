@@ -22,8 +22,6 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [isRepeat, setIsRepeat] = useState<boolean>(false);
 
-    console.log(player)
-
     const [time, setTime] = useState({
         min: "0",
         sec: "0"
