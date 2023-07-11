@@ -10,6 +10,7 @@ import MediaItem from "@/components/MediaItem";
 import useOnPlay from "@/hooks/useOnPlay";
 import Loader from "@/components/Loader";
 import {BsArrowDownUp} from "react-icons/bs";
+import {FaArrowsTurnToDots} from "react-icons/fa6";
 
 interface LibraryProps {
     songs: Song[];
@@ -18,7 +19,7 @@ interface LibraryProps {
 const Library: FC<LibraryProps> = ({songs}) => {
     const [songsData, setSongsData] = useState<Song[]>(songs);
     const [isReversed, setIsReversed] = useState<boolean>(false);
-    const onPlay = useOnPlay(songs);
+    const onPlay = useOnPlay(songsData);
     const authModal = useAuthModal();
     const {isLoading} = useUser();
     const uploadModal = useUploadModal();
@@ -46,6 +47,10 @@ const Library: FC<LibraryProps> = ({songs}) => {
         setSongsData(songsData.reverse());
     }
 
+    const toggleRandom = (): void => {
+        setSongsData([...songsData].sort(() => Math.random() - 0.5));
+    }
+
     if (isLoading) {
         return <Loader />
     }
@@ -60,6 +65,7 @@ const Library: FC<LibraryProps> = ({songs}) => {
                     </p>
                 </div>
                 <div className="flex items-center gap-x-2">
+                    <FaArrowsTurnToDots size={26} onClick={toggleRandom} className="text-neutral-400 cursor-pointer hover:text-white transition"/>
                     <BsArrowDownUp size={26} onClick={toggleReverse} color={isReversed ? '#22c55e': 'rgb(163 163 163)'} className="text-neutral-400 cursor-pointer hover:text-white transition" />
                     <AiOutlinePlus onClick={onClick} size={26} className="text-neutral-400 cursor-pointer hover:text-white transition"/>
                 </div>

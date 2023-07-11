@@ -9,6 +9,7 @@ import usePlayer from "@/hooks/usePlayer";
 import Loader from "@/components/Loader";
 import {useUser} from "@/hooks/useUser";
 import {BsArrowDownUp} from "react-icons/bs";
+import {FaArrowsTurnToDots} from "react-icons/fa6";
 
 interface SearchContent {
     songs: Song[];
@@ -18,12 +19,16 @@ const SearchContent: FC<SearchContent> = ({songs}) => {
     const [songsData, setSongsData] = useState<Song[]>(songs);
     const [isReversed, setIsReversed] = useState<boolean>(false);
     const player = usePlayer();
-    const onPlay = useOnPlay(songs);
+    const onPlay = useOnPlay(songsData);
     const {isLoading} = useUser();
 
     const toggleReverse = (): void => {
         setIsReversed(prev => !prev);
         setSongsData(songsData.reverse());
+    }
+
+    const toggleRandom = (): void => {
+        setSongsData([...songsData].sort(() => Math.random() - 0.5));
     }
 
     useEffect((): void => {
@@ -45,7 +50,9 @@ const SearchContent: FC<SearchContent> = ({songs}) => {
     return (
         <>
             <div className="flex items-center justify-items-start gap-x-4 px-6 py-4">
-                <h2 className="text-white text-2xl">Sort by:</h2><BsArrowDownUp size={26} onClick={toggleReverse} color={isReversed ? '#22c55e': 'rgb(163 163 163)'} className="text-neutral-400 cursor-pointer hover:text-white transition" />
+                <h2 className="text-white text-2xl">Sort by:</h2>
+                <FaArrowsTurnToDots size={26} onClick={toggleRandom} className="text-neutral-400 cursor-pointer hover:text-white transition"/>
+                <BsArrowDownUp size={26} onClick={toggleReverse} color={isReversed ? '#22c55e': 'rgb(163 163 163)'} className="text-neutral-400 cursor-pointer hover:text-white transition" />
             </div>
             <div className={twMerge(`flex flex-col gap-y-2 w-full px-6 h-full`,  player.activeId && "h-[calc(100%-130px)]")}>
                 {songsData.map(song => (
