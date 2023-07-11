@@ -12,6 +12,7 @@ const useLoadImageUser = (userData: any) => {
 
     console.log(user)
     console.log(userData)
+    console.log(!userData && !user)
 
     const {data: imageData} = supabaseClient
         .storage
