@@ -53,8 +53,6 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
         return <Loader />
     }
 
-    console.log(songsData);
-
     return (
         <>
             <div className="flex items-center justify-items-start gap-x-4 px-6 py-4">
