@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Image from "next/image";
 import LikedContent from "@/app/liked/components/LikedContent";
 import type { Metadata } from 'next'
+import getUserId from "@/actions/getUserId";
 
 export const revalidate = 0;
 
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 }
 
 const LikedPage: NextPage = async () => {
+    const userData = await getUserId();
     const songs = await getLikedSongs();
 
     return (
@@ -26,7 +28,7 @@ const LikedPage: NextPage = async () => {
             overflow-y-auto
             scrollbar-thin
         ">
-            <Header>
+            <Header userData={userData}>
                 <div className="mt-20">
                     <div className="
                         flex
