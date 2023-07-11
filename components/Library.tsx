@@ -9,6 +9,7 @@ import {Song} from "@/types";
 import MediaItem from "@/components/MediaItem";
 import useOnPlay from "@/hooks/useOnPlay";
 import Loader from "@/components/Loader";
+import {BsArrowDownUp} from "react-icons/bs";
 
 interface LibraryProps {
     songs: Song[];
@@ -32,6 +33,10 @@ const Library: FC<LibraryProps> = ({songs}) => {
         return uploadModal.onOpen();
     };
 
+    const toggleReverse= (): void => {
+        songs = [...songs].reverse();
+    }
+
     if (isLoading) {
         return <Loader />
     }
@@ -45,6 +50,7 @@ const Library: FC<LibraryProps> = ({songs}) => {
                         Your Library
                     </p>
                 </div>
+                <BsArrowDownUp size={26} onClick={toggleReverse} className="text-neutral-400 cursor-pointer hover:text-white transition" />
                 <AiOutlinePlus onClick={onClick} size={26} className="text-neutral-400 cursor-pointer hover:text-white transition"/>
             </div>
             <div className="flex flex-col gap-y-2 mt-4 px-3">
