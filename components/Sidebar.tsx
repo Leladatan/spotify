@@ -9,10 +9,12 @@ import {Song} from "@/types";
 import {useUser} from "@/hooks/useUser";
 import usePlayer from "@/hooks/usePlayer";
 import {twMerge} from "tailwind-merge";
+
 interface SidebarProps {
     children: React.ReactNode;
     songs: Song[];
 }
+
 const Sidebar: FC<SidebarProps> = ({children, songs}) => {
     const pathname = usePathname();
     const player = usePlayer();
