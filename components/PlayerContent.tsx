@@ -92,7 +92,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
 
     useEffect(() => {
         sound?.play();
-        const arrow = window.addEventListener("keyup", (event) => {
+        const arrow: any = window.addEventListener("keyup", (event) => {
         if(event.key === "ArrowRight" && player.activeId && user) {
             event.preventDefault();
             console.log("right")
