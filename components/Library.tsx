@@ -16,6 +16,7 @@ interface LibraryProps {
 }
 
 const Library: FC<LibraryProps> = ({songs}) => {
+
     const [isReversed, setIsReversed] = useState<boolean>(false);
     const onPlay = useOnPlay(songs);
     const authModal = useAuthModal();
@@ -25,13 +26,9 @@ const Library: FC<LibraryProps> = ({songs}) => {
     const context = useContext(UserContext);
 
     useEffect((): void => {
-        if (!isReversed) {
-            return;
-        }
-
         songs.reverse();
 
-    }, [isReversed, songs]);
+    }, [isReversed]);
 
     if (!context) {
         return null;
