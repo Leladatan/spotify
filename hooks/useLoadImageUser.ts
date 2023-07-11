@@ -6,7 +6,7 @@ const useLoadImageUser = (userData: any) => {
     const supabaseClient = useSupabaseClient();
     const {isLoading, user} = useUser();
 
-    if (!userData|| !userData[0]) {
+    if (!userData || !userData[0]) {
         return null;
     }
 
