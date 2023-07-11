@@ -55,7 +55,7 @@ const SearchContent: FC<SearchContent> = ({songs}) => {
                         flex items-center gap-x-4 w-full
                     "
                     >
-                        <div className="flex-1">
+                        <div className="xs:flex-1 xsm:w-[225px]">
                             <MediaItem data={song} onClick={(id: string) => onPlay(id)}/>
                         </div>
                         <LikeButton songId={song.id} />
