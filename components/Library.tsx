@@ -21,7 +21,7 @@ const Library: FC<LibraryProps> = ({songs}) => {
     const authModal = useAuthModal();
     const {isLoading} = useUser();
     const uploadModal = useUploadModal();
-    
+
     const context = useContext(UserContext);
 
     useEffect((): void => {
@@ -30,14 +30,14 @@ const Library: FC<LibraryProps> = ({songs}) => {
         }
 
         songs.reverse();
-        
+
     }, [isReversed, songs]);
-    
+
     if (!context) {
         return null;
     }
     const {user} = context;
-    
+
     const onClick = (): void => {
         if (!user) {
             return authModal.onOpen();
@@ -64,7 +64,7 @@ const Library: FC<LibraryProps> = ({songs}) => {
                     </p>
                 </div>
                 <div className="flex items-center gap-x-2">
-                    <BsArrowDownUp size={26} onClick={toggleReverse} className="text-neutral-400 cursor-pointer hover:text-white transition" />
+                    <BsArrowDownUp size={26} onClick={toggleReverse} color={isReversed ? '#22c55e': 'rgb(163 163 163)'} className="text-neutral-400 cursor-pointer hover:text-white transition" />
                     <AiOutlinePlus onClick={onClick} size={26} className="text-neutral-400 cursor-pointer hover:text-white transition"/>
                 </div>
             </div>
