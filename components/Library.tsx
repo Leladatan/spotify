@@ -16,7 +16,7 @@ interface LibraryProps {
 }
 
 const Library: FC<LibraryProps> = ({songs}) => {
-
+    const [songsData, setSongsData] = useState<Song[]>(songs);
     const [isReversed, setIsReversed] = useState<boolean>(false);
     const onPlay = useOnPlay(songs);
     const authModal = useAuthModal();
@@ -26,8 +26,9 @@ const Library: FC<LibraryProps> = ({songs}) => {
     const context = useContext(UserContext);
 
     useEffect((): void => {
-        songs.reverse();
+        const result = [...songsData].reverse();
 
+        setSongsData(result);
     }, [isReversed]);
 
     if (!context) {
@@ -44,6 +45,7 @@ const Library: FC<LibraryProps> = ({songs}) => {
     };
 
     const toggleReverse= (): void => {
+        songs.reverse();
         setIsReversed(prev => !prev);
     }
 
@@ -66,7 +68,7 @@ const Library: FC<LibraryProps> = ({songs}) => {
                 </div>
             </div>
             <div className="flex flex-col gap-y-2 mt-4 px-3">
-                {songs.map(song => (
+                {songsData.map(song => (
                     <MediaItem
                         onClick={(id: string) => onPlay(id)}
                         key={song.id}
