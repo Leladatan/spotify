@@ -22,14 +22,11 @@ const Library: FC<LibraryProps> = ({songs}) => {
     const authModal = useAuthModal();
     const {isLoading} = useUser();
     const uploadModal = useUploadModal();
-
     const context = useContext(UserContext);
 
     useEffect((): void => {
-        const result = [...songsData].reverse();
-
-        setSongsData(result);
-    }, [isReversed]);
+        setSongsData(songs);
+    }, [songs]);
 
     if (!context) {
         return null;
@@ -44,8 +41,9 @@ const Library: FC<LibraryProps> = ({songs}) => {
         return uploadModal.onOpen();
     };
 
-    const toggleReverse= (): void => {
+    const toggleReverse = (): void => {
         setIsReversed(prev => !prev);
+        setSongsData(songsData.reverse());
     }
 
     if (isLoading) {
