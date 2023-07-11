@@ -17,7 +17,7 @@ interface LikedContentProps {
 }
 
 const LikedContent: FC<LikedContentProps> = ({songs}) => {
-    const [songsData, setSongsData] = useState<Song[]>([]);
+    const [songsData, setSongsData] = useState<Song[]>(songs);
     const [isReversed, setIsReversed] = useState<boolean>(false);
     const router = useRouter();
     const {isLoading, user} = useUser();
