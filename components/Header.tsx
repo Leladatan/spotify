@@ -11,13 +11,17 @@ import {useSupabaseClient} from "@supabase/auth-helpers-react";
 import {FaUserAlt} from "react-icons/fa";
 import toast from "react-hot-toast";
 import {UserContext} from "@/hooks/useUser";
+import useLoadImageUser from "@/hooks/useLoadImageUser";
+import Image from "next/image";
 
 interface HeaderProps {
     children: React.ReactNode;
     className?: string;
+    userData?: any;
 }
 
-const Header: FC<HeaderProps> = ({children, className}) => {
+const Header: FC<HeaderProps> = ({children, className, userData}) => {
+    const imageUrl = useLoadImageUser(userData);
     const authModal = useAuthModal();
     const router = useRouter();
     const supabaseClient = useSupabaseClient();
@@ -84,12 +88,17 @@ const Header: FC<HeaderProps> = ({children, className}) => {
                             >
                                 Logout
                             </Button>
-                            <Button
-                                onClick={() => router.push('/account')}
-                                className="bg-white"
-                            >
-                                <FaUserAlt/>
-                            </Button>
+                            {userData ?
+                                <Image src={imageUrl!} priority className="rounded-full" width={200}
+                                       height={200} alt="Profile image"/>
+                                :
+                                <Button
+                                    onClick={() => router.push('/account')}
+                                    className="bg-white"
+                                >
+                                    <FaUserAlt/>
+                                </Button>
+                            }
                         </div>
                     ) : (
                         <>
