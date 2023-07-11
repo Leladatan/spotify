@@ -57,7 +57,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         player.setId(nextSong);
     }, 300), []);
 
-    const onPlayPrev = (): void => {
+    const onPlayPrev = useCallback(_debounce((): void => {
         if (player.ids.length === 0) {
             return;
         }
@@ -71,13 +71,13 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         }
 
         player.setId(prevSong);
-    };
+    }, 300), []);
 
     const [play, {pause, duration, sound}] = useSound(
         songUrl,
         {
             volume: volume,
-            onplay: () : void=> {
+            onplay: (): void => {
                 setIsPlaying(true)
             },
             onend: (): void => {
@@ -177,7 +177,9 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
                     <RadixSlider.Track className="bg-neutral-600 relative grow rounded-full h-[7px]">
                         <RadixSlider.Range className="absolute bg-green-600 rounded-full h-full"/>
                     </RadixSlider.Track>
-                    <RadixSlider.Thumb className="block w-[14px] h-[14px] bg-white rounded-full hover:w-[20px] hover:h-[20px] focus:outline-0 focus:shadow" aria-label="Duration" />
+                    <RadixSlider.Thumb
+                        className="block w-[14px] h-[14px] bg-white rounded-full hover:w-[20px] hover:h-[20px] focus:outline-0 focus:shadow"
+                        aria-label="Duration"/>
                 </RadixSlider.Root>
 
             </div>
@@ -214,7 +216,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
 
                 <div className="hidden md:flex w-full justify-end items-center gap-x-6 pr-2">
                     <AiOutlineSync onClick={toggleRepeat} className="cursor-pointer"
-                                   color={isRepeat ? '#22c55e': 'rgb(163 163 163)'} size={25}
+                                   color={isRepeat ? '#22c55e' : 'rgb(163 163 163)'} size={25}
                     />
                     <div className="flex items-center gap-x-2 w-[120px]">
                         <VolumeIcon onClick={toggleMute} className="cursor-pointer" size={34}/>
