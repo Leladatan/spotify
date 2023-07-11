@@ -31,7 +31,9 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
     }
 
     const toggleRandom = (): void => {
+        console.log(songsData)
         setSongsData(songs.sort(() => Math.random() - 0.5));
+        console.log(songsData)
     }
 
     useEffect((): void => {
