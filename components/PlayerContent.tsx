@@ -1,5 +1,5 @@
 "use client";
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useCallback, useEffect, useState} from 'react';
 import {Song} from "@/types";
 import MediaItem from "@/components/MediaItem";
 import LikeButton from "@/components/LikeButton";
@@ -10,6 +10,7 @@ import Slider from "@/components/Slider";
 import usePlayer from "@/hooks/usePlayer";
 import useSound from "use-sound";
 import * as RadixSlider from "@radix-ui/react-slider";
+import _debounce from "lodash/debounce";
 
 interface PlayerContentProps {
     song: Song;
@@ -40,7 +41,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         setVolume(value);
     }
 
-    const onPlayNext = (): void => {
+    const onPlayNext = useCallback(_debounce((): void => {
         if (player.ids.length === 0) {
             return;
         }
@@ -54,7 +55,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         }
 
         player.setId(nextSong);
-    };
+    }, 300), []);
 
     const onPlayPrev = (): void => {
         if (player.ids.length === 0) {

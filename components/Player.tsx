@@ -5,7 +5,6 @@ import {useUser} from "@/hooks/useUser";
 import useGetSongById from "@/hooks/useGetSongById";
 import useLoadSongUrl from "@/hooks/useLoadSongUrl";
 import PlayerContent from "@/components/PlayerContent";
-import {Song} from "@/types";
 
 const Player: FC = () => {
     const player = usePlayer();
