@@ -21,23 +21,19 @@ const Library: FC<LibraryProps> = ({songs}) => {
     const authModal = useAuthModal();
     const {isLoading} = useUser();
     const uploadModal = useUploadModal();
-    
+
     const context = useContext(UserContext);
 
     useEffect((): void => {
-        if (!isReversed) {
-            return;
-        }
-
         songs.reverse();
-        
+
     }, [isReversed, songs]);
-    
+
     if (!context) {
         return null;
     }
     const {user} = context;
-    
+
     const onClick = (): void => {
         if (!user) {
             return authModal.onOpen();
