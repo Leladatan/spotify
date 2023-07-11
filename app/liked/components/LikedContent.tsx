@@ -19,7 +19,6 @@ interface LikedContentProps {
 const LikedContent: FC<LikedContentProps> = ({songs}) => {
     const [songsData, setSongsData] = useState<Song[]>(songs);
     const [isReversed, setIsReversed] = useState<boolean>(false);
-    const [isRandom, setIsRandom] = useState<boolean>(false);
     const router = useRouter();
     const {isLoading, user} = useUser();
     const player = usePlayer();
@@ -32,7 +31,6 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
     }
 
     const toggleRandom = (): void => {
-        setIsRandom(prev => !prev);
         setSongsData(songsData.sort(() => Math.random() - 0.5));
     }
 
