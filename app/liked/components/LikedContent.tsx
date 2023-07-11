@@ -17,9 +17,8 @@ interface LikedContentProps {
 }
 
 const LikedContent: FC<LikedContentProps> = ({songs}) => {
-    const [songsData, setSongsData] = useState<Song[]>(songs);
+    const [songsData, setSongsData] = useState<Song[]>([]);
     const [isReversed, setIsReversed] = useState<boolean>(false);
-    const [isRandom, setIsRandom] = useState<boolean>(false);
     const router = useRouter();
     const {isLoading, user} = useUser();
     const player = usePlayer();
@@ -28,10 +27,11 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
 
     const toggleReverse= (): void => {
         setIsReversed(prev => !prev);
+        setSongsData(songsData.reverse());
     }
 
-    const toggleRandom= (): void => {
-        setIsRandom(prev => !prev);
+    const handleRandom= (): void => {
+        setSongsData(songsData.sort(() => Math.random() - 0.5));
     }
 
     useEffect((): void => {
@@ -39,25 +39,6 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
             router.replace('/');
         }
     }, [isLoading, router, user]);
-
-    useEffect((): void => {
-        const result = [...songsData];
-
-        if (isReversed && !isRandom) {
-            setSongsData(result.reverse());
-            return;
-        }
-
-        if (isRandom && !isReversed) {
-            setSongsData(result.sort(() => Math.random() - 0.5));
-            return;
-        }
-
-        if (isRandom && isReversed) {
-            setSongsData(result.sort(() => Math.random() - 0.5).reverse());
-        }
-
-    }, [isReversed, isRandom]);
 
     if (songs.length === 0) {
         return <div className="flex flex-col gap-y-2 w-full px-6 text-neutral-400">No liked songs</div>
@@ -71,7 +52,7 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
         <>
             <div className="flex items-center justify-items-start gap-x-4 px-6 py-4">
                 <h2 className="text-white text-2xl">Sort by:</h2>
-                <FaArrowsTurnToDots size={26} onClick={toggleRandom} color={isRandom ? '#22c55e': 'rgb(163 163 163)'} className="text-neutral-400 cursor-pointer hover:text-white transition"/>
+                <FaArrowsTurnToDots size={26} onClick={handleRandom} className="text-neutral-400 cursor-pointer hover:text-white transition"/>
                 <BsArrowDownUp size={26} onClick={toggleReverse} color={isReversed ? '#22c55e': 'rgb(163 163 163)'} className="text-neutral-400 cursor-pointer hover:text-white transition" />
             </div>
             <div className={twMerge(`flex flex-col gap-y-2 w-full px-6 h-full`, player.activeId && "h-[calc(100%-130px)]")}>
