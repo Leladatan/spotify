@@ -7,18 +7,10 @@ import useLoadSongUrl from "@/hooks/useLoadSongUrl";
 import PlayerContent from "@/components/PlayerContent";
 import {Song} from "@/types";
 
-function debounce(fn: any, delay: number) {
-    let timeoutId: any;
-    return (args: Song): void => {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => fn(args), delay);
-    };
-}
-
 const Player: FC = () => {
     const player = usePlayer();
     const user = useUser().user;
-    const {song}: any = debounce(useGetSongById(String(player.activeId)), 1000);
+    const {song} = useGetSongById(String(player.activeId));
     const songUrl: string = useLoadSongUrl(song!);
 
     useEffect((): void => {
