@@ -1,5 +1,5 @@
 "use client";
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useState} from 'react';
 import {Song} from "@/types";
 import MediaItem from "@/components/MediaItem";
 import LikeButton from "@/components/LikeButton";
@@ -21,15 +21,10 @@ const SearchContent: FC<SearchContent> = ({songs}) => {
     const onPlay = useOnPlay(songs);
     const {isLoading} = useUser();
 
-    const toggleReverse= (): void => {
+    const toggleReverse = (): void => {
         setIsReversed(prev => !prev);
+        setSongsData(songsData.reverse());
     }
-
-    useEffect((): void => {
-        const result = [...songsData].reverse();
-
-        setSongsData(result);
-    }, [isReversed]);
 
     if (songs.length === 0) {
         return (
@@ -49,7 +44,7 @@ const SearchContent: FC<SearchContent> = ({songs}) => {
                 <h2 className="text-white text-2xl">Sort by:</h2><BsArrowDownUp size={26} onClick={toggleReverse} color={isReversed ? '#22c55e': 'rgb(163 163 163)'} className="text-neutral-400 cursor-pointer hover:text-white transition" />
             </div>
             <div className={twMerge(`flex flex-col gap-y-2 w-full px-6 h-full`,  player.activeId && "h-[calc(100%-130px)]")}>
-                {songs.map(song => (
+                {songsData.map(song => (
                     <div
                         key={song.id}
                         className="
