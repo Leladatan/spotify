@@ -13,19 +13,6 @@ const Player: FC = () => {
     const {song} = useGetSongById(String(player.activeId));
     const songUrl: string = useLoadSongUrl(song!);
 
-    window.addEventListener("keyup", (event) => {
-        if(event.key === "ArrowRight" && player.activeId && user) {
-            event.preventDefault();
-            console.log("right")
-        }
-
-        if(event.key === "ArrowLeft" && player.activeId && user) {
-            event.preventDefault();
-            console.log("Left")
-        }
-
-    });
-
     useEffect((): void => {
         localStorage.getItem("volume") === null ? localStorage.setItem("volume", "1") : localStorage.getItem("volume");
     }, []);
