@@ -4,6 +4,7 @@ import SearchInput from "@/components/SearchInput";
 import SearchContent from "@/app/search/components/SearchContent";
 import getSongsByTitle from "@/actions/getSongsByTitle";
 import type {Metadata} from 'next';
+import getUserId from "@/actions/getUserId";
 
 interface SearchPage {
     searchParams: {
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
 export const revalidate = 0;
 
 const SearchPage = async ({searchParams}: SearchPage) => {
+    const userData = await getUserId();
     const songs = await getSongsByTitle(searchParams.title);
 
     return (
@@ -33,7 +35,7 @@ const SearchPage = async ({searchParams}: SearchPage) => {
                 scrollbar-thin
             "
         >
-            <Header className="from-bg-neutral-900">
+            <Header className="from-bg-neutral-900" userData={userData}>
                 <div className="
                     mb-2
                     flex
