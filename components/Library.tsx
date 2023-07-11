@@ -1,5 +1,5 @@
-"use client"
-import React, {FC, useContext} from 'react';
+"use client";
+import React, {FC, useContext, useEffect, useState} from 'react';
 import {TbPlaylist} from "react-icons/tb";
 import {AiOutlinePlus} from "react-icons/ai";
 import useAuthModal from "@/hooks/useAuthModal";
@@ -16,15 +16,28 @@ interface LibraryProps {
 }
 
 const Library: FC<LibraryProps> = ({songs}) => {
+    const [isReversed, setIsReversed] = useState<boolean>(false);
     const onPlay = useOnPlay(songs);
     const authModal = useAuthModal();
     const {isLoading} = useUser();
     const uploadModal = useUploadModal();
+    
     const context = useContext(UserContext);
+
+    useEffect((): void => {
+        if (!isReversed) {
+            return;
+        }
+
+        songs.reverse();
+        
+    }, [isReversed, songs]);
+    
     if (!context) {
         return null;
     }
     const {user} = context;
+    
     const onClick = (): void => {
         if (!user) {
             return authModal.onOpen();
@@ -34,7 +47,7 @@ const Library: FC<LibraryProps> = ({songs}) => {
     };
 
     const toggleReverse= (): void => {
-        songs = [...songs].reverse();
+        setIsReversed(prev => !prev);
     }
 
     if (isLoading) {
@@ -50,8 +63,10 @@ const Library: FC<LibraryProps> = ({songs}) => {
                         Your Library
                     </p>
                 </div>
-                <BsArrowDownUp size={26} onClick={toggleReverse} className="text-neutral-400 cursor-pointer hover:text-white transition" />
-                <AiOutlinePlus onClick={onClick} size={26} className="text-neutral-400 cursor-pointer hover:text-white transition"/>
+                <div className="flex items-center gap-x-2">
+                    <BsArrowDownUp size={26} onClick={toggleReverse} className="text-neutral-400 cursor-pointer hover:text-white transition" />
+                    <AiOutlinePlus onClick={onClick} size={26} className="text-neutral-400 cursor-pointer hover:text-white transition"/>
+                </div>
             </div>
             <div className="flex flex-col gap-y-2 mt-4 px-3">
                 {songs.map(song => (
