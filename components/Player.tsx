@@ -21,6 +21,8 @@ const Player: FC = () => {
         return null;
     }
 
+    console.log(song)
+
     return (
         <div className="
             fixed bottom-0
