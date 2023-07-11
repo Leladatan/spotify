@@ -26,6 +26,8 @@ const Header: FC<HeaderProps> = ({children, className, userData}) => {
     const router = useRouter();
     const supabaseClient = useSupabaseClient();
 
+    console.log(imageUrl);
+
     const context = useContext(UserContext);
     if (!context) {
         return null;
