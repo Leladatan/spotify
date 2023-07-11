@@ -46,8 +46,8 @@ const SearchContent: FC<SearchContent> = ({songs}) => {
 
     return (
         <>
-            <div className="flex items-center justify-items-start gap-x-4">
-                <h2 className="text-white text-4xl">Sort by:</h2><BsArrowDownUp size={26} onClick={toggleReverse} color={isReversed ? '#22c55e': 'rgb(163 163 163)'} className="text-neutral-400 cursor-pointer hover:text-white transition" />
+            <div className="flex items-center justify-items-start gap-x-4 px-6 py-4">
+                <h2 className="text-white text-2xl">Sort by:</h2><BsArrowDownUp size={26} onClick={toggleReverse} color={isReversed ? '#22c55e': 'rgb(163 163 163)'} className="text-neutral-400 cursor-pointer hover:text-white transition" />
             </div>
             <div className={twMerge(`flex flex-col gap-y-2 w-full px-6 h-full`,  player.activeId && "h-[calc(100%-130px)]")}>
                 {songs.map(song => (
