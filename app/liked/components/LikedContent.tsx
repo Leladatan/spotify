@@ -27,11 +27,11 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
 
     const toggleReverse = (): void => {
         setIsReversed(prev => !prev);
-        setSongsData(songs.reverse());
+        setSongsData(songsData.reverse());
     }
 
     const toggleRandom = (): void => {
-        setSongsData(songs.sort(() => Math.random() - 0.5));
+        setSongsData([...songsData].sort(() => Math.random() - 0.5));
     }
 
     useEffect((): void => {
@@ -52,8 +52,8 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
     if (isLoading) {
         return <Loader />
     }
-    
-    console.log(songs);
+
+    console.log(songsData);
 
     return (
         <>
