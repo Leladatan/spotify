@@ -52,12 +52,12 @@ const LikedContent: FC<LikedContentProps> = ({songs}) => {
             setSongsData(result.sort(() => Math.random() - 0.5));
             return;
         }
-        
+
         if (isRandom && isReversed) {
             setSongsData(result.sort(() => Math.random() - 0.5).reverse());
         }
-        
-    }, [isReversed, isRandom, songsData]);
+
+    }, [isReversed, isRandom]);
 
     if (songs.length === 0) {
         return <div className="flex flex-col gap-y-2 w-full px-6 text-neutral-400">No liked songs</div>
