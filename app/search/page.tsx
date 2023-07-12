@@ -31,9 +31,6 @@ const SearchPage = async ({searchParams}: SearchPage) => {
                 rounded-lg
                 h-full
                 w-full
-                overflow-hidden
-                overflow-y-auto
-                scrollbar-thin
             "
         >
             <Header className="from-bg-neutral-900" userData={userData}>
