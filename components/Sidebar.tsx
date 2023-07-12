@@ -1,5 +1,6 @@
 "use client";
-import React, {FC, useMemo} from 'react';
+import React, {FC, useMemo, useEffect} from 'react';
+import { useRouter } from 'next/router';
 import {usePathname} from "next/navigation";
 import {HiHome, HiSearch} from "react-icons/hi";
 import Box from "@/components/Box";
@@ -18,6 +19,7 @@ interface SidebarProps {
 const Sidebar: FC<SidebarProps> = ({children, songs}) => {
     const pathname = usePathname();
     const player = usePlayer();
+    const router = useRouter();
     const user = useUser().user;
     const routes = useMemo(() => [
         {
@@ -33,6 +35,23 @@ const Sidebar: FC<SidebarProps> = ({children, songs}) => {
             href: '/search',
         }
     ], [pathname]);
+
+    useEffect(() => {
+    const eventHandler = (e: any) => {
+        console.log(e.target.documentElement.scrollHeight);
+        console.log(e.target.documentElement.scrollTop);
+    };
+
+    if (typeof document !== 'undefined') {
+      document.addEventListener('eventName', eventHandler);
+    }
+
+    return () => {
+      if (typeof document !== 'undefined') {
+        document.removeEventListener('eventName', eventHandler);
+      }
+    };
+  }, [router]);
 
     return (
         <div className={twMerge(`flex h-full`, (player.activeId && user) && "h-[calc(100%-130px)]")}>
