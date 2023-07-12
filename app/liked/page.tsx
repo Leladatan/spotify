@@ -6,6 +6,7 @@ import Image from "next/image";
 import LikedContent from "@/app/liked/components/LikedContent";
 import type { Metadata } from 'next'
 import getUserId from "@/actions/getUserId";
+import {Song, UserDetails} from "@/types";
 
 export const revalidate = 0;
 
@@ -15,8 +16,8 @@ export const metadata: Metadata = {
 }
 
 const LikedPage: NextPage = async () => {
-    const userData = await getUserId();
-    const songs = await getLikedSongs();
+    const userData: UserDetails[] = await getUserId();
+    const songs: Song[] = await getLikedSongs();
 
     return (
         <div className="
