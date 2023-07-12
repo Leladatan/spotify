@@ -45,12 +45,12 @@ const Sidebar: FC<SidebarProps> = ({children, songs}) => {
 
         const main = mainRef.current;
 
-    if (typeof document !== 'undefined') {
+    if (typeof main !== 'undefined') {
       main.addEventListener('eventName', eventHandler);
     }
 
     return () => {
-      if (typeof document !== 'undefined') {
+      if (typeof main !== 'undefined') {
         main.removeEventListener('eventName', eventHandler);
       }
     };
