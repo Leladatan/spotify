@@ -13,27 +13,9 @@ interface SongsContentProps {
 }
 
 const SongsContent: FC<SongsContentProps> = ({songs}) => {
-    const [songsData, setSongsData] = useState<Song[]>(songs);
     const onPlay = useOnPlay(songs);
     const player = usePlayer();
     const {isLoading} = useUser();
-
-    const scrollHandler = (e: any): void => {
-        let h: number = e.target.documentElement.scrollHeight;
-        let t: number = e.target.documentElement.scrollTop;
-        let w: number = window.innerHeight;
-        if (h - (t + w) < 100) {
-            console.log([...songsData, ...songs]);
-            console.log("mem");
-        }
-    }
-
-    useEffect(() => {
-        window.addEventListener('scroll', scrollHandler);
-        return (): void => {
-            window.removeEventListener('scroll', scrollHandler);
-        }
-    }, []);
 
     if (isLoading) {
         return <Loader />
@@ -57,7 +39,7 @@ const SongsContent: FC<SongsContentProps> = ({songs}) => {
             2xl:grid-cols-6
             gap-4
             mt-4 h-full`, player.activeId && "h-[calc(100%-130px)]")}>
-            {songsData.map(song => (
+            {songs.map(song => (
                 <SongItem
                     key={song.id}
                     onClick={(id: string) => onPlay(id)}
