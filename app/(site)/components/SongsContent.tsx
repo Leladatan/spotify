@@ -1,5 +1,5 @@
 "use client";
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC} from 'react';
 import {Song} from "@/types";
 import SongItem from "@/components/SongItem";
 import useOnPlay from "@/hooks/useOnPlay";
@@ -12,32 +12,13 @@ interface SongsContentProps {
     songs: Song[];
 }
 
-export const page: number = 0;
-
 const SongsContent: FC<SongsContentProps> = ({songs}) => {
     const onPlay = useOnPlay(songs);
     const player = usePlayer();
     const {isLoading} = useUser();
 
-    const scrollHandler = (e: any): void => {
-        let h: number = e.target.documentElement.scrollHeight;
-        let t: number = e.target.documentElement.scrollTop;
-        let ih: number = window.innerHeight;
-        if (h - (t + ih) < 100) {
-            page + 1;
-            console.log(page);
-        }
-    }
-
-    useEffect(() => {
-        document.addEventListener('scroll', scrollHandler);
-        return (): void => {
-            document.removeEventListener('scroll', scrollHandler);
-        }
-    }, []);
-
     if (isLoading) {
-        return <Loader/>
+        return <Loader />
     }
 
     if (songs.length === 0) {
