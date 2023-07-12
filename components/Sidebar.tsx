@@ -43,12 +43,12 @@ const Sidebar: FC<SidebarProps> = ({children, songs}) => {
     };
 
     if (typeof document !== 'undefined') {
-      document.addEventListener('eventName', eventHandler);
+      document.querySelector('.main').addEventListener('eventName', eventHandler);
     }
 
     return () => {
       if (typeof document !== 'undefined') {
-        document.removeEventListener('eventName', eventHandler);
+        document.querySelector('.main').removeEventListener('eventName', eventHandler);
       }
     };
   }, [router]);
