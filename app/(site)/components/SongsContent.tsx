@@ -29,9 +29,9 @@ const SongsContent: FC<SongsContentProps> = ({songs}) => {
     }
 
     useEffect(() => {
-        document.addEventListener('scroll', scrollHandler);
+        window.addEventListener('scroll', scrollHandler);
         return (): void => {
-            document.removeEventListener('scroll', scrollHandler);
+            window.removeEventListener('scroll', scrollHandler);
         }
     }, []);
 
