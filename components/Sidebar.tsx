@@ -34,6 +34,22 @@ const Sidebar: FC<SidebarProps> = ({children, songs}) => {
         }
     ], [pathname]);
 
+    useEffect(() => {
+        document.querySelector('.main').addEventListener('scroll', scrollHandler);
+        return (): void => {
+            document.querySelector('.main').removeEventListener('scroll', scrollHandler);
+        }
+    }, []);
+
+    const scrollHandler = (e: any) => {
+        let h = e.target.documentElement.scrollHeight;
+        let t = e.target.documentElement.scrollTop;
+        let w = window.innerHeight;
+        console.log(h);
+        console.log(t);
+        console.log(w);
+    }
+
     return (
         <div className={twMerge(`flex h-full`, (player.activeId && user) && "h-[calc(100%-130px)]")}>
             <div className="hidden md:flex flex-col gap-y-2 bg-black h-full w-[300px] p-2">
