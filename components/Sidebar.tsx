@@ -1,5 +1,5 @@
 "use client";
-import React, {FC, useMemo, useEffect} from 'react';
+import React, {FC, useMemo, useEffect, useRef} from 'react';
 import { useRouter } from 'next/navigation';
 import {usePathname} from "next/navigation";
 import {HiHome, HiSearch} from "react-icons/hi";
@@ -21,6 +21,7 @@ const Sidebar: FC<SidebarProps> = ({children, songs}) => {
     const player = usePlayer();
     const router = useRouter();
     const user = useUser().user;
+    const mainRef = useRef();
     const routes = useMemo(() => [
         {
             icon: HiHome,
@@ -42,13 +43,15 @@ const Sidebar: FC<SidebarProps> = ({children, songs}) => {
         console.log(e.target.documentElement.scrollTop);
     };
 
+        const main = mainRef.current;
+
     if (typeof document !== 'undefined') {
-      document.querySelector('.main').addEventListener('eventName', eventHandler);
+      main.addEventListener('eventName', eventHandler);
     }
 
     return () => {
       if (typeof document !== 'undefined') {
-        document.querySelector('.main').removeEventListener('eventName', eventHandler);
+        main.removeEventListener('eventName', eventHandler);
       }
     };
   }, [router]);
@@ -76,7 +79,7 @@ const Sidebar: FC<SidebarProps> = ({children, songs}) => {
                     <Library songs={songs}/>
                 </Box>
             </div>
-            <main className="main h-full flex-1 overflow-hidden overflow-y-auto scrollbar-thin py-2">
+            <main ref={mainRef} className="main h-full flex-1 overflow-hidden overflow-y-auto scrollbar-thin py-2">
                 {children}
             </main>
         </div>
