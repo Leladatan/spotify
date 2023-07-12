@@ -1,5 +1,5 @@
 "use client";
-import React, {FC, useMemo} from 'react';
+import React, {FC, useMemo, useEffect} from 'react';
 import {usePathname} from "next/navigation";
 import {HiHome, HiSearch} from "react-icons/hi";
 import Box from "@/components/Box";
