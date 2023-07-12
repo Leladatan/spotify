@@ -192,6 +192,9 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
                     <div className="flex items-center gap-x-4">
                         <MediaItem data={song}/>
                         <LikeButton songId={song.id}/>
+                        <AiOutlineSync onClick={toggleRepeat} className="cursor-pointer flex md:hidden" 
+                                       color={isRepeat ? '#22c55e' : 'rgb(163 163 163)'} size={25}
+                        />
                     </div>
                 </div>
 
@@ -211,12 +214,6 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
                         onClick={onPlayNext}
                         size={30}
                         className="text-neutral-400 cursor-pointer hover:text-white transition"
-                    />
-                </div>
-
-                <div className="flex md:hidden">
-                    <AiOutlineSync onClick={toggleRepeat} className="cursor-pointer"
-                                   color={isRepeat ? '#22c55e' : 'rgb(163 163 163)'} size={25}
                     />
                 </div>
 
