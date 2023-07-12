@@ -23,11 +23,11 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [isRepeat, setIsRepeat] = useState<boolean>(false);
 
-    const [time, setTime] = useState({
+    const [time, setTime] = useState<{min: string, sec: string}>({
         min: "0",
         sec: "0"
     });
-    const [currTime, setCurrTime] = useState({
+    const [currTime, setCurrTime] = useState<{min: string, sec: string}>({
         min: "0",
         sec: "0"
     });
@@ -46,9 +46,9 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
             return;
         }
 
-        const currentIndex = player.ids.findIndex(id => id === player.activeId);
+        const currentIndex: number = player.ids.findIndex(id => id === player.activeId);
 
-        const nextSong = player.ids[currentIndex + 1];
+        const nextSong: string = player.ids[currentIndex + 1];
 
         if (!nextSong) {
             return player.setId(player.ids[0]);
@@ -62,9 +62,9 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
             return;
         }
 
-        const prevIndex = player.ids.findIndex(id => id === player.activeId);
+        const prevIndex: number = player.ids.findIndex(id => id === player.activeId);
 
-        const prevSong = player.ids[prevIndex - 1];
+        const prevSong: string = player.ids[prevIndex - 1];
 
         if (!prevSong) {
             return player.setId(String(player.ids.length - 1));
@@ -92,16 +92,16 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
     useEffect(() => {
         sound?.play();
 
-        return () => {
+        return (): void => {
             sound?.unload();
         }
     }, [sound]);
 
     useEffect((): void => {
         if (duration) {
-            const sec = duration / 1000;
-            const min = String(Math.floor(sec / 60));
-            const secRemain = String(Math.floor(sec % 60));
+            const sec: number = duration / 1000;
+            const min: string = String(Math.floor(sec / 60));
+            const secRemain: string = String(Math.floor(sec % 60));
             setTime({
                 min: min,
                 sec: secRemain
@@ -113,15 +113,15 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         const interval = setInterval((): void => {
             if (sound) {
                 setSeconds(sound.seek([]));
-                const min = String(Math.floor(sound.seek([]) / 60));
-                const sec = String(Math.floor(sound.seek([]) % 60));
+                const min: string = String(Math.floor(sound.seek([]) / 60));
+                const sec: string = String(Math.floor(sound.seek([]) % 60));
                 setCurrTime({
                     min,
                     sec
                 });
             }
         }, 1000);
-        return () => clearInterval(interval);
+        return (): void => clearInterval(interval);
     }, [sound]);
 
     useEffect((): void => {
@@ -166,7 +166,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
                 <RadixSlider.Root
                     className="relative flex items-center select-none touch-none w-full h-5"
                     value={[seconds!]}
-                    onValueChange={(newValue) => {
+                    onValueChange={(newValue): void => {
                         sound.seek([newValue[0]]);
                     }}
                     min={0}
@@ -189,17 +189,17 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
             ">
 
                 <div className="flex w-full justify-start xsm:justify-center">
-                    <div className="flex items-center gap-x-4">
+                    <div className="flex items-center gap-x-2 md:gap-x-4">
                         <MediaItem data={song}/>
                         <LikeButton songId={song.id}/>
-                        <AiOutlineSync onClick={toggleRepeat} className="cursor-pointer flex md:hidden" 
-                                       color={isRepeat ? '#22c55e' : 'rgb(163 163 163)'} size={25}
+                        <AiOutlineSync onClick={toggleRepeat} className="cursor-pointer flex md:hidden"
+                                       color={isRepeat ? '#22c55e' : 'rgb(163 163 163)'} size={30}
                         />
                     </div>
                 </div>
 
                 <div
-                    className="h-full flex justify-end xsm:justify-center md:justify-center items-center w-full max-w-[722px] gap-x-6">
+                    className="h-full flex justify-end xsm:justify-center md:justify-center items-center w-full max-w-[722px] gap-x-4 md:gap-x-6">
                     <AiFillStepBackward
                         onClick={onPlayPrev}
                         size={30}
