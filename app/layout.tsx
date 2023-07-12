@@ -9,8 +9,10 @@ import ToasterProvider from "@/providers/ToasterProvider";
 import getSongsByUserId from "@/actions/getSongsByUserId";
 import Player from "@/components/Player";
 import {Metadata} from "next";
+import {Song} from "@/types";
+import {NextFont} from "next/dist/compiled/@next/font";
 
-const figtree = Figtree({subsets: ['latin']});
+const figtree: NextFont = Figtree({subsets: ['latin']});
 
 export const metadata: Metadata = {
     title: 'Spotify',
@@ -23,7 +25,7 @@ export const metadata: Metadata = {
 export const revalidate = 0;
 
 const Layout = async ({children,}: { children: ReactNode }) => {
-    const userSongs = await getSongsByUserId();
+    const userSongs: Song[] = await getSongsByUserId();
     return (
         <html lang="en">
         <body className={figtree.className}>
