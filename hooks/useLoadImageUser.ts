@@ -1,4 +1,3 @@
-import {Song} from "@/types";
 import {useUser} from "@/hooks/useUser";
 import {useSupabaseClient} from "@supabase/auth-helpers-react";
 
