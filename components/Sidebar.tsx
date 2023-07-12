@@ -46,12 +46,12 @@ const Sidebar: FC<SidebarProps> = ({children, songs}) => {
         const main = mainRef.current;
 
     if (typeof main !== 'undefined') {
-      main.addEventListener('eventName', eventHandler);
+      main.addEventListener('scroll', eventHandler);
     }
 
     return () => {
       if (typeof main !== 'undefined') {
-        main.removeEventListener('eventName', eventHandler);
+        main.removeEventListener('scroll', eventHandler);
       }
     };
   }, [router]);
