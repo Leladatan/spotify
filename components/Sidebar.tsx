@@ -19,7 +19,7 @@ const Sidebar: FC<SidebarProps> = ({children, songs}) => {
     const pathname = usePathname();
     const player = usePlayer();
     const user = useUser().user;
-    const mainRef = useRef<HTMLMainElement>(null);
+    const mainRef = useRef<HTMLElement>(null);
     const routes = useMemo(() => [
         {
             icon: HiHome,
