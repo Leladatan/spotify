@@ -37,7 +37,9 @@ const Sidebar: FC<SidebarProps> = ({children, songs}) => {
 
     useEffect(() => {
     const eventHandler = (e: any) => {
+        console.log(e);
         console.log(e.target);
+        console.log(mainRef.current);
     };
 
         const main = mainRef.current;
