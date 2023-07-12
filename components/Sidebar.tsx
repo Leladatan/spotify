@@ -1,6 +1,6 @@
 "use client";
 import React, {FC, useMemo, useEffect} from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import {usePathname} from "next/navigation";
 import {HiHome, HiSearch} from "react-icons/hi";
 import Box from "@/components/Box";
