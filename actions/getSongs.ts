@@ -11,7 +11,7 @@ const getSongs = async (): Promise<Song[]> => {
         .from('songs')
         .select('*')
         .order('created_at', {ascending: false})
-        .range(0, 50);
+        .range(0, 100);
 
     if (error) {
         console.log(error);
