@@ -55,7 +55,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         }
 
         player.setId(nextSong);
-    }, 500), []);
+    }, 300), []);
 
     const onPlayPrev = useCallback(_debounce((): void => {
         if (player.ids.length === 0) {
@@ -71,7 +71,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
         }
 
         player.setId(prevSong);
-    }, 500), []);
+    }, 300), []);
 
     const [play, {pause, duration, sound}] = useSound(
         songUrl,
