@@ -36,7 +36,7 @@ const AccountContent: FC<AccountContentProps> = ({userData, songs}) => {
     }
 
     return (
-        <div className="mb-7 px-6 xsm:px-2 flex flex-col xsm:items-center gap-y-6">
+        <main className="mb-7 px-6 xsm:px-2 flex flex-col xsm:items-center gap-y-6">
             <div className="flex acc:flex-col gap-x-6 acc:gap-y-4 acc:gap-x-0">
                 <Image src={imageUrl || '/images/liked.png'} priority className="rounded-full object-cover" width={200}
                        height={200} alt="Profile image"/>
@@ -52,7 +52,7 @@ const AccountContent: FC<AccountContentProps> = ({userData, songs}) => {
                 </div>
             </div>
             <Library songs={songs}/>
-        </div>
+        </main>
     );
 }
 
