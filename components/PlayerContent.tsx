@@ -214,6 +214,12 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
                     />
                 </div>
 
+                <div className="flex md:hidden">
+                    <AiOutlineSync onClick={toggleRepeat} className="cursor-pointer"
+                                   color={isRepeat ? '#22c55e' : 'rgb(163 163 163)'} size={25}
+                    />
+                </div>
+
                 <div className="hidden md:flex w-full justify-end items-center gap-x-6 pr-2">
                     <AiOutlineSync onClick={toggleRepeat} className="cursor-pointer"
                                    color={isRepeat ? '#22c55e' : 'rgb(163 163 163)'} size={25}
