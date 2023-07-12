@@ -4,11 +4,12 @@ import {NextPage} from "next";
 import getSongs from "@/actions/getSongs";
 import SongsContent from "@/app/(site)/components/SongsContent";
 import getUserID from "@/actions/getUserId";
+import {Song, UserDetails} from "@/types";
 
 export const revalidate = 0;
 const HomePage:NextPage = async () => {
-    const songs = await getSongs();
-    const userData = await getUserID();
+    const songs: Song[] = await getSongs();
+    const userData: UserDetails[] = await getUserID();
 
   return (
       <div className="bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto scrollbar-thin">
