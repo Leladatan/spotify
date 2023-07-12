@@ -4,6 +4,7 @@ import type {Metadata} from 'next';
 import AccountContent from "@/app/account/components/AccountContent";
 import getUserId from "@/actions/getUserId";
 import getSongsByUserId from "@/actions/getSongsByUserId";
+import {Song, UserDetails} from "@/types";
 
 export const metadata: Metadata = {
     title: 'Spotify: profile',
@@ -11,8 +12,8 @@ export const metadata: Metadata = {
 }
 
 const AccountPage: NextPage = async () => {
-    const userData = await getUserId();
-    const userSongs = await getSongsByUserId();
+    const userData: UserDetails[] = await getUserId();
+    const userSongs: Song[] = await getSongsByUserId();
 
     return (
         <div className="
