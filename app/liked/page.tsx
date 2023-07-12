@@ -25,9 +25,6 @@ const LikedPage: NextPage = async () => {
             rounded-lg
             h-full
             w-full
-            overflow-hidden
-            overflow-y-auto
-            scrollbar-thin
         ">
             <Header userData={userData}>
                 <div className="mt-20">
