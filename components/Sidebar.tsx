@@ -53,7 +53,6 @@ const Sidebar: FC<SidebarProps> = ({children, songs}) => {
         return () => {
             if (main) main.removeEventListener('scroll', eventHandler);
         }
-    };
     }, []);
     
     return (
