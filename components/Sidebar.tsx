@@ -37,11 +37,10 @@ const Sidebar: FC<SidebarProps> = ({children, songs}) => {
 
     useEffect(() => {
         const eventHandler = (e: any) => {
-            console.log(e);
             console.log(e.target);
+            console.log(e.target.scrollTop - e.target.offsetHeight);
             console.log(e.target.scrollTop);
             console.log(e.target.offsetHeight);
-            console.log(mainRef.current);
         };
         
         const main = mainRef.current;
