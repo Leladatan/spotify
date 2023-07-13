@@ -12,7 +12,6 @@ import toast from "react-hot-toast";
 import {UserContext} from "@/hooks/useUser";
 import useLoadImageUser from "@/hooks/useLoadImageUser";
 import Image from "next/image";
-import Loader from "@/components/Loader";
 
 interface HeaderProps {
     children: React.ReactNode;
@@ -88,13 +87,11 @@ const Header: FC<HeaderProps> = ({children, className, userData}) => {
                             >
                                 Logout
                             </Button>
-                            {userData && imageUrl! ?
+                            {userData && imageUrl &&
                                 <Image
                                     onClick={() => router.push('/account')}
-                                    src={imageUrl!} priority className="rounded-full cursor-pointer" width={42}
+                                    src={imageUrl} priority className="rounded-full cursor-pointer" width={42}
                                        height={42} alt="Profile image"/>
-                                :
-                                <Loader />
                             }
                         </div>
                     ) : (
