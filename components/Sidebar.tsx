@@ -1,5 +1,5 @@
 "use client";
-import React, {FC, useMemo, useRef, useEffect} from 'react';
+import React, {FC, useMemo} from 'react';
 import {usePathname} from "next/navigation";
 import {HiHome, HiSearch} from "react-icons/hi";
 import Box from "@/components/Box";
@@ -19,7 +19,6 @@ const Sidebar: FC<SidebarProps> = ({children, songs}) => {
     const pathname = usePathname();
     const player = usePlayer();
     const user = useUser().user;
-    const mainRef = useRef<HTMLElement>(null);
     const routes = useMemo(() => [
         {
             icon: HiHome,
@@ -34,25 +33,6 @@ const Sidebar: FC<SidebarProps> = ({children, songs}) => {
             href: '/search',
         }
     ], [pathname]);
-
-    useEffect(() => {
-        const eventHandler = (e: any) => {
-            console.log(e.target);
-            console.log(e.target.scrollTop - e.target.offsetHeight);
-            console.log(e.target.scrollTop);
-            console.log(e.target.offsetHeight);
-        };
-        
-        const main = mainRef.current;
-
-        if (main) {
-            main.addEventListener('scroll', eventHandler);
-        }
-
-        return () => {
-            if (main) main.removeEventListener('scroll', eventHandler);
-        }
-    }, []);
     
     return (
         <div className={twMerge(`flex h-full`, (player.activeId && user) && "h-[calc(100%-130px)]")}>
@@ -77,7 +57,7 @@ const Sidebar: FC<SidebarProps> = ({children, songs}) => {
                     <Library songs={songs}/>
                 </Box>
             </div>
-            <main ref={mainRef} className="h-full flex-1 overflow-hidden overflow-y-auto scrollbar-thin py-2">
+            <main className="h-full flex-1 overflow-hidden overflow-y-auto scrollbar-thin py-2">
                 {children}
             </main>
         </div>
