@@ -20,7 +20,7 @@ const AccountPage: NextPage = async () => {
             bg-neutral-900
             rounded-lg
             h-full
-            w-full
+            w-fulloverflow-hidden overflow-y-auto scrollbar-thin 
         ">
             <Header className="from-bg-neutral-900" userData={userData}>
                 <div className="mb-2 flex flex-col gap-y-6">
