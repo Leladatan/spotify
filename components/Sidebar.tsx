@@ -1,6 +1,6 @@
 "use client";
 import React, {FC, useMemo, useRef, useEffect} from 'react';
-import {usePathname, useRouter} from "next/navigation";
+import {usePathname} from "next/navigation";
 import {HiHome, HiSearch} from "react-icons/hi";
 import Box from "@/components/Box";
 import SidebarItem from "@/components/SidebarItem";
@@ -54,7 +54,7 @@ const Sidebar: FC<SidebarProps> = ({children, songs}) => {
             if (main) main.removeEventListener('scroll', eventHandler);
         }
     };
-    }, [router]);
+    }, []);
     
     return (
         <div className={twMerge(`flex h-full`, (player.activeId && user) && "h-[calc(100%-130px)]")}>
