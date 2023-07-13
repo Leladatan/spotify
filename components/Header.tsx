@@ -8,11 +8,11 @@ import {BiSearch} from "react-icons/bi";
 import Button from "@/components/Button";
 import useAuthModal from "@/hooks/useAuthModal";
 import {useSupabaseClient} from "@supabase/auth-helpers-react";
-import {FaUserAlt} from "react-icons/fa";
 import toast from "react-hot-toast";
 import {UserContext} from "@/hooks/useUser";
 import useLoadImageUser from "@/hooks/useLoadImageUser";
 import Image from "next/image";
+import Loader from "@/components/Loader";
 
 interface HeaderProps {
     children: React.ReactNode;
@@ -88,18 +88,13 @@ const Header: FC<HeaderProps> = ({children, className, userData}) => {
                             >
                                 Logout
                             </Button>
-                            {userData ?
+                            {userData && imageUrl ?
                                 <Image
                                     onClick={() => router.push('/account')}
-                                    src={imageUrl! || '/images/liked.png'} priority className="rounded-full cursor-pointer" width={42}
+                                    src={imageUrl} priority className="rounded-full cursor-pointer" width={42}
                                        height={42} alt="Profile image"/>
                                 :
-                                <Button
-                                    onClick={() => router.push('/account')}
-                                    className="bg-white"
-                                >
-                                    <FaUserAlt/>
-                                </Button>
+                                <Loader />
                             }
                         </div>
                     ) : (
