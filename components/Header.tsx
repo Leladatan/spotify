@@ -88,10 +88,10 @@ const Header: FC<HeaderProps> = ({children, className, userData}) => {
                             >
                                 Logout
                             </Button>
-                            {userData && imageUrl ?
+                            {userData && imageUrl! ?
                                 <Image
                                     onClick={() => router.push('/account')}
-                                    src={imageUrl} priority className="rounded-full cursor-pointer" width={42}
+                                    src={imageUrl!} priority className="rounded-full cursor-pointer" width={42}
                                        height={42} alt="Profile image"/>
                                 :
                                 <Loader />
