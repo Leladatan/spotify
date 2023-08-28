@@ -1,4 +1,5 @@
 "use client";
+
 import React, {FC, useEffect, useState} from 'react';
 import {Song} from "@/types";
 import MediaItem from "@/components/MediaItem";
@@ -11,12 +12,12 @@ import {useUser} from "@/hooks/useUser";
 import {BsArrowDownUp} from "react-icons/bs";
 import {FaArrowsTurnToDots} from "react-icons/fa6";
 
-interface SearchContent {
-    songs: Song[];
+interface SearchAuthorContentProps {
+    authors: Song[];
 }
 
-const SearchContent: FC<SearchContent> = ({songs}) => {
-    const [songsData, setSongsData] = useState<Song[]>(songs);
+const SearchAuthorContent: FC<SearchAuthorContentProps> = ({authors}) => {
+    const [songsData, setSongsData] = useState<Song[]>(authors);
     const [isReversed, setIsReversed] = useState<boolean>(false);
     const player = usePlayer();
     const onPlay = useOnPlay(songsData);
@@ -32,10 +33,10 @@ const SearchContent: FC<SearchContent> = ({songs}) => {
     }
 
     useEffect((): void => {
-        setSongsData(songs);
-    }, [songs]);
+        setSongsData(authors);
+    }, [authors]);
 
-    if (songs.length === 0) {
+    if (authors.length === 0) {
         return (
             <div className="flex flex-col gap-y-2 w-full px-6 text-neutral-400">
                 No songs found.
@@ -73,4 +74,4 @@ const SearchContent: FC<SearchContent> = ({songs}) => {
     );
 };
 
-export default SearchContent;
+export default SearchAuthorContent;

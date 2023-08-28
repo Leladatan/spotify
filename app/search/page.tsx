@@ -1,11 +1,12 @@
 import React from 'react';
 import Header from "@/components/Header";
 import SearchInput from "@/components/SearchInput";
-import SearchContent from "@/app/search/components/SearchContent";
 import getSongsByTitle from "@/actions/getSongsByTitle";
 import type {Metadata} from 'next';
 import getUserId from "@/actions/getUserId";
 import {Song, UserDetails} from "@/types";
+import MainContent from "@/app/search/components/MainContent";
+import getSongsByAuthor from "@/actions/getSongsByAuthor";
 
 interface SearchPage {
     searchParams: {
@@ -23,6 +24,7 @@ export const revalidate = 0;
 const SearchPage = async ({searchParams}: SearchPage) => {
     const userData: UserDetails[] = await getUserId();
     const songs: Song[] = await getSongsByTitle(searchParams.title);
+    const authors: Song[] = await getSongsByAuthor(searchParams.title);
 
     return (
         <div
@@ -30,7 +32,7 @@ const SearchPage = async ({searchParams}: SearchPage) => {
                 bg-neutral-900
                 rounded-lg
                 h-full
-                w-full overflow-hidden overflow-y-auto scrollbar-thin 
+                w-full overflow-hidden overflow-y-auto scrollbar-thin
             "
         >
             <Header className="from-bg-neutral-900" userData={userData}>
@@ -46,7 +48,7 @@ const SearchPage = async ({searchParams}: SearchPage) => {
                     <SearchInput/>
                 </div>
             </Header>
-            <SearchContent songs={songs}/>
+            <MainContent songs={songs} authors={authors} />
         </div>
     );
 };

@@ -4,7 +4,8 @@ const nextConfig = {
         domains: [
             "zlwzyujlfrgjprkfdygn.supabase.co",
             "sun9-78.userapi.com",
-            "cdn.discordapp.com"
+            "cdn.discordapp.com",
+            "avatars.githubusercontent.com"
         ]
     }
 
