@@ -29,6 +29,7 @@ const MediaItem: FC<MediaItemProsp> = ({data, onClick}) => {
                 w-full
                 p-2
                 rounded-md
+                hover:animate-pulse
             "
         >
             <div className="

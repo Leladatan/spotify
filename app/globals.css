@@ -51,9 +51,17 @@ input[type="range"]::-webkit-slider-thumb {
     transition: background .2s ease-in-out;
 }
 
+
 input[type=range]::-webkit-slider-runnable-track  {
     -webkit-appearance: none;
     box-shadow: none;
     border: none;
     background: transparent;
+}
+
+@keyframes background {
+    50% {
+        background: skyblue;
+        box-shadow: 0 -200px 100px -100px yellowgreen inset;
+    }
 }

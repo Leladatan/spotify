@@ -11,6 +11,7 @@ import usePlayer from "@/hooks/usePlayer";
 import useSound from "use-sound";
 import * as RadixSlider from "@radix-ui/react-slider";
 import _debounce from "lodash/debounce";
+import {cn} from "@/lib/utils";
 
 interface PlayerContentProps {
     song: Song;
@@ -175,7 +176,7 @@ const PlayerContent: FC<PlayerContentProps> = ({song, songUrl}) => {
                     aria-label="Duration"
                 >
                     <RadixSlider.Track className="bg-neutral-600 relative grow rounded-full h-[7px]">
-                        <RadixSlider.Range className="absolute bg-green-600 rounded-full h-full"/>
+                        <RadixSlider.Range className={cn("absolute bg-green-600 rounded-full h-full", isPlaying && "animate-pulse")}/>
                     </RadixSlider.Track>
                     <RadixSlider.Thumb
                         className="block w-[14px] h-[14px] bg-white rounded-full hover:w-[20px] hover:h-[20px] focus:outline-0 focus:shadow"
