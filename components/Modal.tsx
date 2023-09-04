@@ -27,7 +27,6 @@ const Modal: FC<ModalProps> = ({isOpen, onChange, description, children, title})
                 <DialogOverlay
                     className="
                     bg-neutral-900/90
-                    backdrop-blur-sm
                     fixed
                     inset-0
                     "

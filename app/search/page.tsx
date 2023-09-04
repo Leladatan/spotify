@@ -35,7 +35,7 @@ const SearchPage = async ({searchParams}: SearchPage) => {
                 w-full overflow-hidden overflow-y-auto scrollbar-thin
             "
         >
-            <Header className="from-bg-neutral-900" userData={userData}>
+            <Header userData={userData}>
                 <div className="
                     mb-2
                     flex

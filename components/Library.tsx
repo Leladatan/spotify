@@ -65,8 +65,12 @@ const Library: FC<LibraryProps> = ({songs}) => {
                     </p>
                 </div>
                 <div className="flex items-center gap-x-2">
-                    <FaArrowsTurnToDots size={26} onClick={toggleRandom} className="text-neutral-400 cursor-pointer hover:text-white transition"/>
-                    <BsArrowDownUp size={26} onClick={toggleReverse} color={isReversed ? '#22c55e': 'rgb(163 163 163)'} className="text-neutral-400 cursor-pointer hover:text-white transition" />
+                    {songsData.length > 2 &&
+                        <>
+                            <FaArrowsTurnToDots size={26} onClick={toggleRandom} className="text-neutral-400 cursor-pointer hover:text-white transition"/>
+                            <BsArrowDownUp size={26} onClick={toggleReverse} color={isReversed ? '#22c55e': 'rgb(163 163 163)'} className="text-neutral-400 cursor-pointer hover:text-white transition" />
+                        </>
+                    }
                     <AiOutlinePlus onClick={onClick} size={26} className="text-neutral-400 cursor-pointer hover:text-white transition"/>
                 </div>
             </div>

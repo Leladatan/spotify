@@ -43,7 +43,7 @@ const Header: FC<HeaderProps> = ({children, className, userData}) => {
         <header className={twMerge(`
             h-fit
             bg-gradient-to-b
-            from-emerald-800
+            from-emerald-700
             p-6
         `,
             className
