@@ -45,11 +45,11 @@ const Library: FC<LibraryProps> = ({songs}) => {
     const toggleReverse = (): void => {
         setIsReversed(prev => !prev);
         setSongsData(songsData.reverse());
-    }
+    };
 
     const toggleRandom = (): void => {
         setSongsData([...songsData].sort(() => Math.random() - 0.5));
-    }
+    };
 
     if (isLoading) {
         return <Loader />

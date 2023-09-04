@@ -1,5 +1,6 @@
 "use client";
-import React, {FC, useContext} from 'react';
+
+import React, {FC} from 'react';
 import {useRouter} from "next/navigation";
 import {twMerge} from "tailwind-merge";
 import {RxCaretLeft, RxCaretRight} from "react-icons/rx";
@@ -9,7 +10,7 @@ import Button from "@/components/Button";
 import useAuthModal from "@/hooks/useAuthModal";
 import {useSupabaseClient} from "@supabase/auth-helpers-react";
 import toast from "react-hot-toast";
-import {UserContext} from "@/hooks/useUser";
+import {useUser} from "@/hooks/useUser";
 import useLoadImageUser from "@/hooks/useLoadImageUser";
 import Image from "next/image";
 
@@ -25,11 +26,7 @@ const Header: FC<HeaderProps> = ({children, className, userData}) => {
     const router = useRouter();
     const supabaseClient = useSupabaseClient();
 
-    const context = useContext(UserContext);
-    if (!context) {
-        return null;
-    }
-    const {user} = context;
+    const user = useUser().user;
 
     const handleLogout = async () => {
         const {error} = await supabaseClient.auth.signOut();
