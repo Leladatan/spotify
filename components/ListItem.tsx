@@ -3,6 +3,8 @@ import {FC} from 'react';
 import {useRouter} from "next/navigation";
 import {FaPlay} from "react-icons/fa";
 import Image from "next/image";
+import {useUser} from "@/hooks/useUser";
+import useAuthModal from "@/hooks/useAuthModal";
 
 interface ListItemProps {
     image: string;
@@ -12,8 +14,14 @@ interface ListItemProps {
 
 const ListItem: FC<ListItemProps> = ({image, name, href}) => {
     const router = useRouter();
+    const user = useUser().user;
+    const authModal = useAuthModal();
 
     const onClick = (): void => {
+        if (!user) {
+            return authModal.onOpen();
+        }
+
         router.push(href);
     }
 
