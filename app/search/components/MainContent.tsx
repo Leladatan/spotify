@@ -14,8 +14,8 @@ interface MainContentProps {
 
 const useStyles: any = makeStyles({
     root: {
-        '& .css-k7y545-MuiButtonBase-root-MuiTab-root.Mui-selected': {
-            color: 'green',
+        '& .Mui-selected': {
+            color: 'green !important',
         },
     },
 });
