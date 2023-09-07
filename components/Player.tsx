@@ -1,4 +1,5 @@
 "use client";
+
 import React, {FC, useEffect} from 'react';
 import usePlayer from "@/hooks/usePlayer";
 import {useUser} from "@/hooks/useUser";
